@@ -2,22 +2,19 @@ import buildsrc.Libs
 import buildsrc.Versions
 
 plugins {
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
 }
 
 android {
-    namespace = "ru.virtual.virtualfredge"
+    namespace = "ru.virtual.core_navigation"
     compileSdk = Versions.compileSdk
 
     defaultConfig {
-        applicationId = "ru.virtual.virtualfredge"
         minSdk = Versions.minSdk
-        targetSdk = Versions.targetSdk
-        versionCode = Versions.versionCode
-        versionName = Versions.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -39,12 +36,12 @@ android {
 }
 
 dependencies {
-    implementation(project(":core-network"))
-    implementation(project(":core-navigation"))
-    implementation(project(":core-android"))
 
     implementation(Libs.AndroidX.core)
     implementation(Libs.AndroidX.appCompat)
     implementation(Libs.Google.material)
-    implementation(Libs.AndroidX.constraintlayout)
+
+    implementation(Libs.AndroidX.navigationUiKtx)
+    implementation(Libs.AndroidX.navigationFragmentKtx)
+
 }

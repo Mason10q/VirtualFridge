@@ -21,4 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "VirtualFridge"
 include(":app")
- 
+include(":core-navigation")
+include(":core-network")
+include(":core-android")
