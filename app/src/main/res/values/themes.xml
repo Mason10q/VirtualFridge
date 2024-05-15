@@ -1,8 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.VirtualFridge" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="text_primary">@color/black</item>
+        <item name="button_active_color">@color/platinum</item>
+        <item name="button_active_text_color">@color/white</item>
+        <item name="bottom_nav_color">@color/white</item>
+
+        <item name="h1_text_size">@dimen/h1_text_size</item>
+        <item name="h2_text_size">@dimen/h2_text_size</item>
+        <item name="h3_text_size">@dimen/h3_text_size</item>
+        <item name="h4_text_size">@dimen/h4_text_size</item>
+        <item name="h5_text_size">@dimen/h5_text_size</item>
+        <item name="h6_text_size">@dimen/h6_text_size</item>
     </style>
 
     <style name="Theme.VirtualFridge" parent="Base.Theme.VirtualFridge" />

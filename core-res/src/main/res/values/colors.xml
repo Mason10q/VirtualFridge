@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="shark">#23272D</color>
+    <color name="thunder">#2D2D2D</color>
+    <color name="white_smoke">#F5F5F5</color>
+    <color name="monsoon">#888888</color>
+    <color name="star_dust">#A1A1A1</color>
+    <color name="gainsboro">#DCDCDC</color>
+    <color name="grey">#D4D4D4</color>
+    <color name="platinum">#E4E4E4</color>
+</resources>

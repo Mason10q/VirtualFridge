@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">VirtualFridge</string>
+    <string name="bottom_nav_fridge">Холодильник</string>
+    <string name="bottom_nav_list">Списки</string>
+    <string name="bottom_nav_recipe">Рецепты</string>
+    <string name="bottom_nav_settings">Настройки</string>
 </resources>

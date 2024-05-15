@@ -22,6 +22,7 @@ object Versions {
         const val navigation = "2.7.7"
         const val splashScreen = "1.0.0"
         const val paging = "3.2.1"
+        const val room = "2.6.1"
     }
 
     object Google {
@@ -58,6 +59,9 @@ object Libs {
         const val splashScreen = "androidx.core:core-splashscreen:${Versions.AndroidX.splashScreen}"
         const val paging = "androidx.paging:paging-runtime:${Versions.AndroidX.paging}"
         const val pagingRxJava3 = "androidx.paging:paging-rxjava3:${Versions.AndroidX.paging}"
+        const val room = "androidx.room:room-runtime:${Versions.AndroidX.room}"
+        const val roomCompiler = "androidx.room:room-compiler:${Versions.AndroidX.room}"
+        const val roomRxJava3 = "androidx.room:room-rxjava3:${Versions.AndroidX.room}"
     }
 
     object Google {

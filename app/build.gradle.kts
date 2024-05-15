@@ -36,15 +36,25 @@ android {
     kotlinOptions {
         jvmTarget = Versions.jvmTarget
     }
+
+    viewBinding {
+        enable = true
+    }
 }
 
 dependencies {
     implementation(project(":core-network"))
     implementation(project(":core-navigation"))
     implementation(project(":core-android"))
+    implementation(project(":core-res"))
+    implementation(project(":core-db"))
+    implementation(project(":feature-product-list"))
 
     implementation(Libs.AndroidX.core)
     implementation(Libs.AndroidX.appCompat)
     implementation(Libs.Google.material)
     implementation(Libs.AndroidX.constraintlayout)
+
+    implementation(Libs.AndroidX.navigationUiKtx)
+    implementation(Libs.AndroidX.navigationFragmentKtx)
 }
