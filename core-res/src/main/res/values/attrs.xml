@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="text_primary" format="color" />
+
+    <attr name="h1_text_size" format="dimension" />
+    <attr name="h2_text_size" format="dimension" />
+    <attr name="h3_text_size" format="dimension" />
+    <attr name="h4_text_size" format="dimension" />
+    <attr name="h5_text_size" format="dimension" />
+    <attr name="h6_text_size" format="dimension" />
+
+    <attr name="button_active_color" format="color" />
+    <attr name="button_active_text_color" format="color" />
+</resources>

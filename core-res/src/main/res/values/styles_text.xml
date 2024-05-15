@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Text" parent="MatchParentWrapContent">
+        <item name="android:textColor">?attr/text_primary</item>
+    </style>
+
+    <style name="Text.H1">
+        <item name="android:textSize">?attr/h1_text_size</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="Text.H2">
+        <item name="android:textSize">?attr/h2_text_size</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="Text.H2.ScreenTitle">
+        <item name="android:layout_marginHorizontal">26dp</item>
+    </style>
+
+    <style name="Text.H3">
+        <item name="android:textSize">?attr/h3_text_size</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="Text.H4">
+        <item name="android:textSize">?attr/h4_text_size</item>
+    </style>
+
+    <style name="Text.H4.Regular">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="Text.H4.Medium">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="Text.H5">
+        <item name="android:textSize">?attr/h5_text_size</item>
+    </style>
+
+    <style name="Text.H5.Regular">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="Text.H5.Medium">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="Text.H6">
+        <item name="android:textSize">?attr/h6_text_size</item>
+    </style>
+
+    <style name="Text.H6.Regular">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="Text.H6.Medium">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+</resources>

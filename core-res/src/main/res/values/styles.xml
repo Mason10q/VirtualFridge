@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MatchParent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="WrapContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="MatchParentWrapContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="WrapContentMatchParent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="MatchParent0dp">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
+
+    <style name="WrapContent0dp">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
+
+
+
+    <style name="FloatingButton" parent="WrapContent">
+        <item name="android:background">@drawable/background_floating_button</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:layout_marginEnd">@dimen/floating_btn_marginEnd</item>
+        <item name="android:layout_marginBottom">@dimen/floating_btn_marginBottom</item>
+        <item name="android:textColor">?attr/button_active_text_color</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">@dimen/h6_text_size</item>
+    </style>
+
+</resources>

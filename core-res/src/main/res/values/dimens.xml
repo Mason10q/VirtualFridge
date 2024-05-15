@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="h1_text_size">28sp</dimen>
+    <dimen name="h2_text_size">24sp</dimen>
+    <dimen name="h3_text_size">20sp</dimen>
+    <dimen name="h4_text_size">17sp</dimen>
+    <dimen name="h5_text_size">15sp</dimen>
+    <dimen name="h6_text_size">12sp</dimen>
+
+    <dimen name="floating_btn_marginEnd">26dp</dimen>
+    <dimen name="floating_btn_marginBottom">36dp</dimen>
+
+</resources>
