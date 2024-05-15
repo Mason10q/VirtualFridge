@@ -13,6 +13,7 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.virtual.core_network.BuildConfig
 import ru.virtual.core_network.FridgeService
+import ru.virtual.core_network.GroceryListApi
 import ru.virtual.core_network.retrofit.buildApi
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -49,7 +50,10 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideKinopoiskApi(builder: Builder) = builder.buildApi<FridgeService>()
+    fun provideFridgeApi(builder: Builder) = builder.buildApi<FridgeService>()
 
 
+    @Singleton
+    @Provides
+    fun provideGroceryListApi(builder: Builder) = builder.buildApi<GroceryListApi>()
 }
