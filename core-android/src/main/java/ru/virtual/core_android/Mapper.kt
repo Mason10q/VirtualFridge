@@ -1,9 +1,9 @@
 package ru.virtual.core_android
 
-interface Mapper<E, DTO> {
+interface Mapper<E, T> {
 
-    fun map(item: DTO): E
+    fun map(item: T): E
 
-    fun map(items: List<DTO>): List<E> = items.map(::map)
+    fun map(items: List<T>): List<E> = items.map(::map)
 
 }

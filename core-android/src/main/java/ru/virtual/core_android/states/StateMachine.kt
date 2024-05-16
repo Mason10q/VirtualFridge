@@ -1,9 +1,9 @@
-package ru.bibaboba.kit.states
+package ru.virtual.core_android.states
 
 import androidx.annotation.IntRange
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
-import ru.bibaboba.kit.addObserver
+import ru.virtual.core_android.addObserver
 import java.lang.IllegalArgumentException
 import kotlin.reflect.KClass
 

@@ -34,6 +34,9 @@ android {
     kotlinOptions {
         jvmTarget = Versions.jvmTarget
     }
+    viewBinding {
+        enable = true
+    }
 }
 
 dependencies {
@@ -41,10 +44,13 @@ dependencies {
 
     implementation(Libs.AndroidX.core)
     implementation(Libs.AndroidX.appCompat)
+    implementation(Libs.AndroidX.recyclerView)
 
     implementation(Libs.DI.dagger)
     kapt(Libs.DI.daggerCompiler)
 
     implementation(Libs.Network.ohttp)
     implementation(Libs.UI.picasso)
+
+    implementation(Libs.RxJava.rxJava)
 }

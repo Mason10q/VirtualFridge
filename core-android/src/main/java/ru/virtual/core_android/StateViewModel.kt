@@ -3,8 +3,8 @@ package ru.virtual.core_android
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ru.bibaboba.kit.states.Effect
-import ru.bibaboba.kit.states.State
+import ru.virtual.core_android.states.Effect
+import ru.virtual.core_android.states.State
 
 abstract class StateViewModel<S: State, E: Effect> : ViewModel() {
 

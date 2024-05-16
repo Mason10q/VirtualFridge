@@ -2,8 +2,8 @@ package ru.virtual.core_android
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
-import ru.bibaboba.kit.states.Effect
-import ru.bibaboba.kit.states.State
+import ru.virtual.core_android.states.Effect
+import ru.virtual.core_android.states.State
 
 abstract class RxStateViewModel<S: State, E: Effect> : StateViewModel<S, E>() {
 

@@ -23,6 +23,7 @@ object Versions {
         const val splashScreen = "1.0.0"
         const val paging = "3.2.1"
         const val room = "2.6.1"
+        const val recyclerView = "1.3.2"
     }
 
     object Google {
@@ -44,6 +45,7 @@ object Versions {
         const val picasso ="2.8"
         const val delegateAdapter = "4.2"
         const val carousel = "1.0.4"
+        const val roundedProgressBar="3.0.0"
     }
 }
 
@@ -62,6 +64,7 @@ object Libs {
         const val room = "androidx.room:room-runtime:${Versions.AndroidX.room}"
         const val roomCompiler = "androidx.room:room-compiler:${Versions.AndroidX.room}"
         const val roomRxJava3 = "androidx.room:room-rxjava3:${Versions.AndroidX.room}"
+        const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.AndroidX.recyclerView}"
     }
 
     object Google {
@@ -94,5 +97,6 @@ object Libs {
         const val picasso = "com.squareup.picasso:picasso:${Versions.UI.picasso}"
         const val delegateAdapter = "io.github.d00mch:delegateadapter:${Versions.UI.delegateAdapter}"
         const val carousel = "com.github.akshaaatt:Sliding-Carousel:${Versions.UI.carousel}"
+        const val roundedProgressBar = "com.github.MackHartley:RoundedProgressBar:${Versions.UI.roundedProgressBar}"
     }
 }
