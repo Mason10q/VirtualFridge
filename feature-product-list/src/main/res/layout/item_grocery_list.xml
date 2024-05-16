@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchParent"
+    android:layout_height="80dp"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/list_name"
+        style="@style/Text.H3"
+        android:text="Продукты 10.12.2024"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/grocery_info" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/grocery_info"
+        style="@style/MatchParentWrapContent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/list_name"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.mackhartley.roundedprogressbar.RoundedProgressBar
+            android:id="@+id/grocery_progress_bar"
+            android:layout_height="8dp"
+            android:layout_width="0dp"
+            app:rpbCornerRadius="10dp"
+            app:rpbProgressColor="@color/black"
+            app:rpbBackgroundTextColor="@color/white_smoke"
+            app:rpbShowProgressText="false"
+            app:rpbProgress="40"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/grocery_progress_text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/grocery_progress_text"
+            style="@style/Text.H6.Regular"
+            android:layout_width="wrap_content"
+            android:text="10/12"
+            android:textSize="12sp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintStart_toEndOf="@id/grocery_progress_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
