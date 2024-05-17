@@ -4,8 +4,9 @@ import ru.virtual.core_android.Mapper
 import ru.virtual.core_network.dto.GroceryListDto
 import ru.virtual.feature_product_list.domain.entities.Grocery
 import ru.virtual.feature_product_list.domain.entities.GroceryList
+import javax.inject.Inject
 
-class GroceryListDtoMapper: Mapper<GroceryList, GroceryListDto> {
+class GroceryListDtoMapper @Inject constructor(): Mapper<GroceryList, GroceryListDto> {
 
     override fun map(item: GroceryListDto): GroceryList = GroceryList(
         item.id ?: 0, item.name ?: "", item.productsAmount ?: 0, item.productsMarked ?: 0

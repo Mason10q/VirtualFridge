@@ -41,10 +41,12 @@ android {
 
 dependencies {
     implementation(project(":core-network"))
+    implementation(project(":core-res"))
 
     implementation(Libs.AndroidX.core)
     implementation(Libs.AndroidX.appCompat)
     implementation(Libs.AndroidX.recyclerView)
+    implementation(Libs.AndroidX.constraintlayout)
 
     implementation(Libs.DI.dagger)
     kapt(Libs.DI.daggerCompiler)

@@ -19,5 +19,9 @@
         app:icon="@drawable/ic_plus"
         android:text="@string/screen_grocery_list_floating_btn"/>
 
+    <include
+        android:id="@+id/loading"
+        layout="@layout/sublayout_loading"
+        android:visibility="gone" />
 
 </LinearLayout>

@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "ru.virtual.virtualfredge"
+    namespace = "ru.virtual.virtualfridge"
     compileSdk = Versions.compileSdk
 
     defaultConfig {
-        applicationId = "ru.virtual.virtualfredge"
+        applicationId = "ru.virtualapps.virtualfridge"
         minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
         versionCode = Versions.versionCode
