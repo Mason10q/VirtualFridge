@@ -15,11 +15,11 @@ class DbGroceryListRepo @Inject constructor(
     private val groceryMapper: Mapper<Grocery, GroceryProduct>
 ): GroceryListRepo {
 
-    override fun getGroceryLists() = dao.getGroceryLists()
+    override fun getGroceryLists(pageNum: Int) = dao.getGroceryLists()
         .subscribeOn(Schedulers.io())
         .map(groceryListMapper::map)
 
-    override fun getGroceriesFromList(listId: Int)= dao.getGroceriesFromList(listId)
+    override fun getGroceriesFromList(listId: Int, pageNum: Int)= dao.getGroceriesFromList(listId)
         .subscribeOn(Schedulers.io())
         .map(groceryMapper::map)
 
@@ -42,7 +42,7 @@ class DbGroceryListRepo @Inject constructor(
     override fun decrementGroceryAmount(listId: Int, productId: Int) = dao.decrementGroceryAmount(listId, productId)
         .subscribeOn(Schedulers.io())
 
-    override fun searchProduct(query: String)= dao.searchProduct(query)
+    override fun searchProduct(query: String, pageNum: Int)= dao.searchProduct(query)
         .subscribeOn(Schedulers.io())
         .map(groceryMapper::map)
 

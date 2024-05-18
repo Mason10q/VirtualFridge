@@ -1,13 +1,13 @@
 package ru.virtual.feature_product_list.domain.usecases
 
+import androidx.paging.PagingData
 import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Single
-import ru.virtual.feature_product_list.domain.entities.Grocery
+import kotlinx.coroutines.flow.Flow
 import ru.virtual.feature_product_list.domain.entities.GroceryList
 
 interface GroceryListUseCase {
 
-    fun getGroceryLists(): Single<List<GroceryList>>
+    fun getGroceryLists(): Flow<PagingData<GroceryList>>
 
     fun addGroceryList(groceryList: GroceryList): Completable
 

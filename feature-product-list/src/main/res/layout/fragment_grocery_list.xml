@@ -12,16 +12,24 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/grocery_list_recycler"
         style="@style/MatchParent"
-        android:layout_weight="1"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_weight="1"
+        android:layout_height="0dp" />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        style="@style/FloatingButton"
-        app:icon="@drawable/ic_plus"
-        android:text="@string/screen_grocery_list_floating_btn"/>
+<!--    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton-->
+<!--        style="@style/FloatingButton"-->
+<!--        app:icon="@drawable/ic_plus"-->
+<!--        android:contentDescription="@string/screen_grocery_list_floating_btn"-->
+<!--        android:text="@string/screen_grocery_list_floating_btn"/>-->
 
     <include
         android:id="@+id/loading"
         layout="@layout/sublayout_loading"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/empty_layout"
+        layout="@layout/empty_layout"
         android:visibility="gone" />
 
 </LinearLayout>

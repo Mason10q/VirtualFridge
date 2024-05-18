@@ -8,41 +8,58 @@ import retrofit2.http.Query
 import ru.virtual.core_network.dto.GroceryDto
 import ru.virtual.core_network.dto.GroceryListDto
 import ru.virtual.core_network.retrofit.EndpointUrl
+import androidx.annotation.IntRange
 
-@EndpointUrl("")
+@EndpointUrl(BuildConfig.ENDPOINT_URL + "/groceryList/")
 interface GroceryListApi {
 
-    @GET("")
-    fun getGroceryLists(): Single<List<GroceryListDto>>
+    @GET("lists")
+    fun getGroceryLists(
+        @Query("page") @IntRange(from = 1) page: Int = 1,
+        @Query("limit") @IntRange(from = 1, to = MAX_PAGE_SIZE.toLong()) pageSize: Int = DEFAULT_PAGE_SIZE
+    ): Single<List<GroceryListDto>>
 
-    @GET("")
-    fun getGroceriesFromList(@Query("listId") listId: Int): Single<List<GroceryDto>>
+    @GET("groceries")
+    fun getGroceriesFromList(
+        @Query("listId") listId: Int,
+        @Query("page") @IntRange(from = 1) page: Int = 1,
+        @Query("limit") @IntRange(from = 1, to = MAX_PAGE_SIZE.toLong()) pageSize: Int = DEFAULT_PAGE_SIZE
+    ): Single<List<GroceryDto>>
 
-    @GET("")
+    @GET("add")
     fun addGroceryList(@Query("name") name: String): Completable
 
-    @POST
+    @POST("remove")
     fun removeGroceryList(@Query("listId") listId: Int): Completable
 
-    @POST
+    @POST("rename")
     fun renameGroceryList(@Query("listId") listId: Int, @Query("newName") newName: String): Completable
 
-    @POST
+    @POST("grocery/add")
     fun addGroceryToList(@Query("listId") listId: Int, @Query("productId") productId: Int): Completable
 
-    @POST
+    @POST("grocery/amount/increment")
     fun incrementGroceryAmount(@Query("listId") listId: Int, @Query("productId") productId: Int): Completable
 
-    @POST
+    @POST("grocery/amount/decrement")
     fun decrementGroceryAmount(@Query("listId") listId: Int, @Query("productId") productId: Int): Completable
 
-    @GET("")
-    fun searchProduct(@Query("query") query: String): Single<List<GroceryDto>>
+    @GET("grocery/search")
+    fun searchProduct(
+        @Query("query") query: String,
+        @Query("page") @IntRange(from = 1) page: Int = 1,
+        @Query("limit") @IntRange(from = 1, to = MAX_PAGE_SIZE.toLong()) pageSize: Int = DEFAULT_PAGE_SIZE
+    ): Single<List<GroceryDto>>
 
-    @POST
+    @POST("grocery/mark")
     fun markGroceryInList(@Query("listId") listId: Int, @Query("productId") productId: Int): Completable
 
-    @POST
+    @POST("grocery/unmark")
     fun unMarkGroceryInList(@Query("listId") listId: Int, @Query("productId") productId: Int): Completable
+
+    companion object {
+        const val DEFAULT_PAGE_SIZE = 10
+        const val MAX_PAGE_SIZE = 20
+    }
 
 }

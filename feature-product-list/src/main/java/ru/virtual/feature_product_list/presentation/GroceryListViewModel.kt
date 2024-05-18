@@ -1,8 +1,15 @@
 package ru.virtual.feature_product_list.presentation
 
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import ru.virtual.core_android.RxStateViewModel
 import ru.virtual.core_android.states.Effect
 import ru.virtual.core_android.states.State
+import ru.virtual.feature_product_list.domain.entities.Grocery
 import ru.virtual.feature_product_list.domain.entities.GroceryList
 import ru.virtual.feature_product_list.domain.usecases.GroceryListUseCase
 import javax.inject.Inject
@@ -10,30 +17,24 @@ import javax.inject.Inject
 class GroceryListViewModel @Inject constructor(private val groceryListUseCase: GroceryListUseCase):
     RxStateViewModel<GroceryListViewModel.GroceryListState, GroceryListViewModel.GroceryListEffect>() {
 
-    fun getGroceryListsIfNeeded() {
+    suspend fun getGroceryListsIfNeeded() {
         if(state.value is GroceryListState.Ready) return
 
         getGroceryLists()
     }
 
-    private fun getGroceryLists() = invokeDisposable {
+    private suspend fun getGroceryLists() =
         groceryListUseCase.getGroceryLists()
-            .doOnSubscribe { _state.postValue(GroceryListState.Loading) }
-            .subscribe({ groceryLists ->
-                if (groceryLists.isEmpty()) {
-                    _state.postValue(GroceryListState.DataIsEmpty)
-                } else {
-                    _state.postValue(GroceryListState.Ready(groceryLists))
-                }
-            }, {
-                _effect.postValue(GroceryListEffect.Error)
-            })
-    }
+            .cachedIn(viewModelScope)
+            .onStart { _state.postValue(GroceryListState.Loading) }
+            .collect{ groceryLists ->
+                _state.postValue(GroceryListState.Ready(groceryLists))
+            }
+
 
     sealed class GroceryListState: State {
         data object Loading : GroceryListState()
-        data class Ready(val groceryLists: List<GroceryList>): GroceryListState()
-        data object DataIsEmpty : GroceryListState()
+        data class Ready(val groceryLists: PagingData<GroceryList>): GroceryListState()
     }
 
     sealed class GroceryListEffect: Effect {

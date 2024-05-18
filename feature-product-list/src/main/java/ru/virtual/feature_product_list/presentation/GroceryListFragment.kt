@@ -6,9 +6,14 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import ru.virtual.core_android.states.StateMachine
+import ru.virtual.core_android.ui.FooterLoadStateAdapter
 import ru.virtual.core_android.ui.StateFragment
 import ru.virtual.core_android.ui.utils.addItemMargins
+import ru.virtual.core_db.DbModule
+import ru.virtual.feature_product_list.R
 import ru.virtual.feature_product_list.databinding.FragmentGroceryListBinding
 import ru.virtual.feature_product_list.di.DaggerGroceryListComponent
 import ru.virtual.feature_product_list.di.GroceryListRepoModule
@@ -31,17 +36,40 @@ class GroceryListFragment: StateFragment<FragmentGroceryListBinding, GroceryList
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        inject(context)
+        inject(requireContext())
     }
 
     override fun setUpViews(view: View) {
+        setUpEmptyLayout()
+
         binding.groceryListRecycler.also {
-            it.adapter = adapter
+            it.adapter = adapter.withLoadStateFooter(FooterLoadStateAdapter())
             it.addItemMargins(26, 26)
+        }
+
+        adapter.addLoadStateListener { loadState ->
+            if(loadState.prepend.endOfPaginationReached) {
+                if(adapter.itemCount < 1) {
+                    binding.emptyLayout.root.visibility = View.VISIBLE
+                } else {
+                    binding.emptyLayout.root.visibility = View.GONE
+                }
+            }
         }
     }
 
-    override fun getStartData() = viewModel.getGroceryListsIfNeeded()
+    override fun getStartData() {
+        lifecycleScope.launch {
+            viewModel.getGroceryListsIfNeeded()
+        }
+    }
+
+    private fun setUpEmptyLayout() {
+        with(binding.emptyLayout) {
+            notifyText.text = resources.getString(R.string.screen_grocery_list_empty_list_text)
+            notifyDescription.text = resources.getString(R.string.screen_grocery_list_empty_list_description)
+        }
+    }
 
     private fun StateMachine.Builder.addLoadingState(): StateMachine.Builder = addState(
         GroceryListViewModel.GroceryListState.Loading::class,
@@ -52,18 +80,16 @@ class GroceryListFragment: StateFragment<FragmentGroceryListBinding, GroceryList
     private fun StateMachine.Builder.addReadyState(): StateMachine.Builder = addState(
         GroceryListViewModel.GroceryListState.Ready::class
     ) {
-        adapter.addItems(it.groceryLists)
-    }
-
-    private fun StateMachine.Builder.addEmptyListState(): StateMachine.Builder = addState(
-        GroceryListViewModel.GroceryListState.DataIsEmpty::class
-    ) {
-
+        lifecycleScope.launch {
+            adapter.submitData(it.groceryLists)
+        }
     }
 
     private fun inject(context: Context) = DaggerGroceryListComponent.builder()
         .groceryListRepoModule(GroceryListRepoModule(context))
+        .dbModule(DbModule(context))
         .build()
+        .inject(this)
 
 
 }

@@ -70,4 +70,7 @@ dependencies {
     kapt(Libs.AndroidX.roomCompiler)
 
     implementation(Libs.UI.roundedProgressBar)
+
+    implementation(Libs.AndroidX.paging)
+    implementation(Libs.AndroidX.pagingRxJava3)
 }

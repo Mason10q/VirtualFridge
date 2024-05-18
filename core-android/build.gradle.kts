@@ -55,4 +55,6 @@ dependencies {
     implementation(Libs.UI.picasso)
 
     implementation(Libs.RxJava.rxJava)
+
+    implementation(Libs.AndroidX.paging)
 }

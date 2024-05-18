@@ -1,5 +1,6 @@
 package ru.virtual.feature_product_list.data
 
+import androidx.paging.PagingConfig
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import ru.virtual.feature_product_list.domain.entities.Grocery
@@ -7,9 +8,9 @@ import ru.virtual.feature_product_list.domain.entities.GroceryList
 
 interface GroceryListRepo {
 
-    fun getGroceryLists(): Single<List<GroceryList>>
+    fun getGroceryLists(pageNum: Int): Single<List<GroceryList>>
 
-    fun getGroceriesFromList(listId: Int): Single<List<Grocery>>
+    fun getGroceriesFromList(listId: Int, pageNum: Int): Single<List<Grocery>>
 
     fun addGroceryList(groceryList: GroceryList): Completable
 
@@ -23,10 +24,19 @@ interface GroceryListRepo {
 
     fun decrementGroceryAmount(listId: Int, productId: Int): Completable
 
-    fun searchProduct(query: String): Single<List<Grocery>>
+    fun searchProduct(query: String, pageNum: Int): Single<List<Grocery>>
 
     fun markGroceryInList(listId: Int, productId: Int): Completable
 
     fun unMarkGroceryInList(listId: Int, productId: Int): Completable
+
+    companion object {
+        val pagerConfig = PagingConfig(
+            pageSize = 3,
+            initialLoadSize = 3,
+            prefetchDistance = 1,
+            enablePlaceholders = false
+        )
+    }
 
 }
