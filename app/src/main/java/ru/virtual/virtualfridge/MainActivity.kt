@@ -11,6 +11,7 @@ import ru.virtual.virtualfridge.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private var navController: NavController? = null
+    private val networkStateController by lazy { NetworkStateController(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,5 +25,7 @@ class MainActivity : AppCompatActivity() {
             mainBottomNavigation.itemIconTintList = null
             navController?.let { mainBottomNavigation.setupWithNavController(it) }
         }
+
+        networkStateController.subscribeOnInternetConnection()
     }
 }
