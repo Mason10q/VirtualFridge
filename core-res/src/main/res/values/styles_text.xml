@@ -3,6 +3,7 @@
 
     <style name="Text" parent="MatchParentWrapContent">
         <item name="android:textColor">?attr/text_primary</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 
     <style name="Text.H1">

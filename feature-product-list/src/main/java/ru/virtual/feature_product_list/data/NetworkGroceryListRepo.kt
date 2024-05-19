@@ -24,8 +24,8 @@ class NetworkGroceryListRepo @Inject constructor(
             .subscribeOn(Schedulers.io())
             .map(groceryMapper::map)
 
-    override fun addGroceryList(groceryList: GroceryList) =
-        api.addGroceryList(groceryList.name)
+    override fun addGroceryList(name: String) =
+        api.addGroceryList(name)
             .subscribeOn(Schedulers.io())
 
     override fun removeGroceryList(listId: Int) = api.removeGroceryList(listId)

@@ -4,4 +4,8 @@
     <string name="screen_grocery_list_floating_btn">новый список</string>
     <string name="screen_grocery_list_empty_list_text">Давайте спланируем покупки</string>
     <string name="screen_grocery_list_empty_list_description">Нажмите на плюс, чтобы создать свой первый список</string>
+
+    <string name="screen_add_grocery_list_title">Создание списка</string>
+    <string name="screen_add_grocery_list_add_btn">Создать список</string>
+    <string name="screen_add_grocery_list_hint">Название списка</string>
 </resources>

@@ -9,7 +9,7 @@ interface GroceryListUseCase {
 
     fun getGroceryLists(): Flow<PagingData<GroceryList>>
 
-    fun addGroceryList(groceryList: GroceryList): Completable
+    fun addGroceryList(name: String): Completable
 
     fun removeGroceryList(listId: Int): Completable
 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchParent">
+
+    <LinearLayout
+        android:id="@+id/header"
+        style="@style/MatchParentWrapContent"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/name_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            style="@style/WrapContent"
+            android:src="@drawable/ic_arrow"
+            android:background="@null"/>
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/Text.H2.ScreenTitle"
+            android:text="@string/screen_add_grocery_list_title" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/name_edit"
+        style="@style/EditText"
+        android:inputType="text"
+        android:hint="@string/screen_add_grocery_list_hint"
+        android:layout_marginTop="26dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toTopOf="@id/add_btn" />
+
+    <Button
+        android:id="@+id/add_btn"
+        style="@style/Button"
+        android:layout_marginTop="36dp"
+        android:enabled="false"
+        android:text="@string/screen_add_grocery_list_add_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name_edit" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

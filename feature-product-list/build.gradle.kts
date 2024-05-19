@@ -73,4 +73,7 @@ dependencies {
 
     implementation(Libs.AndroidX.paging)
     implementation(Libs.AndroidX.pagingRxJava3)
+
+    implementation(Libs.AndroidX.navigationUiKtx)
+    implementation(Libs.AndroidX.navigationFragmentKtx)
 }

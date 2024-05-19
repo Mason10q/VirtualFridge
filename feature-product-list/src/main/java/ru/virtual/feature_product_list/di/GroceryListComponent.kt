@@ -4,6 +4,7 @@ import dagger.Component
 import ru.virtual.core_android.di.CoreModule
 import ru.virtual.core_db.DbModule
 import ru.virtual.core_network.di.NetworkModule
+import ru.virtual.feature_product_list.presentation.AddGroceryListFragment
 import ru.virtual.feature_product_list.presentation.GroceryListFragment
 import javax.inject.Singleton
 
@@ -12,6 +13,8 @@ import javax.inject.Singleton
 interface GroceryListComponent {
 
     fun inject(fragment: GroceryListFragment)
+
+    fun inject(fragment: AddGroceryListFragment)
 
     @Component.Builder
     interface Builder {

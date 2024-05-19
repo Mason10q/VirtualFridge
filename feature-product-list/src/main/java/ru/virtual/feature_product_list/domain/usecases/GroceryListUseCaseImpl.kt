@@ -16,8 +16,8 @@ class GroceryListUseCaseImpl @Inject constructor(
         pagingSourceFactory = { GroceryListPagingSource(repository) }
     ).flow
 
-    override fun addGroceryList(groceryList: GroceryList): Completable =
-        repository.addGroceryList(groceryList)
+    override fun addGroceryList(name: String): Completable =
+        repository.addGroceryList(name)
             .observeOn(AndroidSchedulers.mainThread())
 
     override fun removeGroceryList(listId: Int): Completable = repository.removeGroceryList(listId)

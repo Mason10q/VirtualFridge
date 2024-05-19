@@ -12,7 +12,7 @@ interface GroceryListRepo {
 
     fun getGroceriesFromList(listId: Int, pageNum: Int): Single<List<Grocery>>
 
-    fun addGroceryList(groceryList: GroceryList): Completable
+    fun addGroceryList(name: String): Completable
 
     fun removeGroceryList(listId: Int): Completable
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/MatchParent"
     android:orientation="vertical">
@@ -7,29 +7,49 @@
     <TextView
         android:id="@+id/title"
         style="@style/Text.H2.ScreenTitle"
-        android:text="@string/screen_grocery_list_title"/>
+        android:text="@string/screen_grocery_list_title"
+        app:layout_constraintBottom_toTopOf="@id/grocery_list_recycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/grocery_list_recycler"
         style="@style/MatchParent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_weight="1"
-        android:layout_height="0dp" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
-<!--    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton-->
-<!--        style="@style/FloatingButton"-->
-<!--        app:icon="@drawable/ic_plus"-->
-<!--        android:contentDescription="@string/screen_grocery_list_floating_btn"-->
-<!--        android:text="@string/screen_grocery_list_floating_btn"/>-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_btn"
+        style="@style/FloatingButton"
+        android:contentDescription="@string/screen_grocery_list_floating_btn"
+        android:text="@string/screen_grocery_list_floating_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <include
         android:id="@+id/loading"
         layout="@layout/sublayout_loading"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:text="@string/screen_grocery_list_floating_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
     <include
         android:id="@+id/empty_layout"
         layout="@layout/empty_layout"
-        android:visibility="gone" />
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

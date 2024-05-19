@@ -35,7 +35,7 @@
 
     <style name="FloatingButton" parent="WrapContent">
         <item name="android:background">@drawable/background_floating_button</item>
-        <item name="android:gravity">left|center_vertical</item>
+<!--        <item name="android:gravity">left|center_vertical</item>-->
         <item name="android:layout_marginEnd">@dimen/floating_btn_marginEnd</item>
         <item name="android:layout_marginBottom">@dimen/floating_btn_marginBottom</item>
         <item name="android:textColor">?attr/button_active_text_color</item>
@@ -51,6 +51,19 @@
 
     <style name="LoadingProgress.LayoutCenter">
         <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="EditText" parent="MatchParentWrapContent">
+        <item name="android:layout_marginHorizontal">?attr/primary_margin_horizontal</item>
+        <item name="android:background">@drawable/background_edittext</item>
+        <item name="android:textColor">?attr/text_primary</item>
+    </style>
+
+
+    <style name="Button" parent="MatchParentWrapContent">
+        <item name="background">@drawable/background_button</item>
+        <item name="android:textColor">?attr/button_active_text_color</item>
+        <item name="android:layout_marginHorizontal">?attr/primary_margin_horizontal</item>
     </style>
 
 </resources>

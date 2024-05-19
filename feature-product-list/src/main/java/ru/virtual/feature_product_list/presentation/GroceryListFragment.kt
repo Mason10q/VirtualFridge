@@ -3,10 +3,11 @@ package ru.virtual.feature_product_list.presentation
 import android.content.Context
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import ru.virtual.core_navigation.R as navR
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import ru.virtual.core_android.states.StateMachine
 import ru.virtual.core_android.ui.FooterLoadStateAdapter
@@ -46,6 +47,8 @@ class GroceryListFragment: StateFragment<FragmentGroceryListBinding, GroceryList
             it.adapter = adapter.withLoadStateFooter(FooterLoadStateAdapter())
             it.addItemMargins(26, 26)
         }
+
+        binding.addBtn.setOnClickListener{ findNavController().navigate(navR.id.fragment_add_grocery_list) }
 
         adapter.addLoadStateListener { loadState ->
             if(loadState.prepend.endOfPaginationReached) {

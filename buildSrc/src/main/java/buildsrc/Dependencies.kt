@@ -27,7 +27,7 @@ object Versions {
     }
 
     object Google {
-        const val material = "1.11.0"
+        const val material = "1.13.0-alpha02"
     }
 
     object Network {

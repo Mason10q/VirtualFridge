@@ -10,5 +10,6 @@
 
     <dimen name="floating_btn_marginEnd">26dp</dimen>
     <dimen name="floating_btn_marginBottom">36dp</dimen>
+    <dimen name="primary_margin_horizontal">26dp</dimen>
 
 </resources>

@@ -13,4 +13,7 @@
     <attr name="button_active_color" format="color" />
     <attr name="button_active_text_color" format="color" />
     <attr name="bottom_nav_color" format="color" />
+    <attr name="divider_color" format="color" />
+
+    <attr name="primary_margin_horizontal" format="dimension" />
 </resources>

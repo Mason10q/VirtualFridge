@@ -2,9 +2,11 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.VirtualFridge" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="text_primary">@color/black</item>
-        <item name="button_active_color">@color/platinum</item>
+        <item name="button_active_color">@color/black</item>
         <item name="button_active_text_color">@color/white</item>
         <item name="bottom_nav_color">@color/white</item>
+        <item name="divider_color">@color/grey</item>
+        <item name="primary_margin_horizontal">@dimen/primary_margin_horizontal</item>
 
         <item name="h1_text_size">@dimen/h1_text_size</item>
         <item name="h2_text_size">@dimen/h2_text_size</item>

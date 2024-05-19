@@ -31,6 +31,10 @@ class GroceryListViewModel @Inject constructor(private val groceryListUseCase: G
                 _state.postValue(GroceryListState.Ready(groceryLists))
             }
 
+    fun addGroceryList(name: String) = groceryListUseCase.addGroceryList(name)
+        .subscribe({}, {
+            _effect.postValue(GroceryListEffect.Error)
+        })
 
     sealed class GroceryListState: State {
         data object Loading : GroceryListState()

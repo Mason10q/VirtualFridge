@@ -23,8 +23,8 @@ class DbGroceryListRepo @Inject constructor(
         .subscribeOn(Schedulers.io())
         .map(groceryMapper::map)
 
-    override fun addGroceryList(groceryList: GroceryList) =
-        dao.addGroceryList(GroceryListTable(name = groceryList.name))
+    override fun addGroceryList(name: String) =
+        dao.addGroceryList(GroceryListTable(name = name))
             .subscribeOn(Schedulers.io())
 
     override fun removeGroceryList(listId: Int) = dao.removeGroceryList(listId)
