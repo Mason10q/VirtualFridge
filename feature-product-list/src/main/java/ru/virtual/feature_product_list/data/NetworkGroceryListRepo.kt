@@ -1,5 +1,6 @@
 package ru.virtual.feature_product_list.data
 
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import ru.virtual.core_android.Mapper
 import ru.virtual.core_network.GroceryListApi
@@ -14,6 +15,10 @@ class NetworkGroceryListRepo @Inject constructor(
     private val groceryListMapper: Mapper<GroceryList, GroceryListDto>,
     private val groceryMapper: Mapper<Grocery, GroceryDto>
 ) : GroceryListRepo {
+
+    override fun getGroceryListById(listId: Int): Single<GroceryList> = api.getGroceryListById(listId)
+        .subscribeOn(Schedulers.io())
+        .map(groceryListMapper::map)
 
     override fun getGroceryLists(pageNum: Int) = api.getGroceryLists(page = pageNum)
         .subscribeOn(Schedulers.io())

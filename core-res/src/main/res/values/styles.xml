@@ -60,10 +60,24 @@
     </style>
 
 
-    <style name="Button" parent="MatchParentWrapContent">
-        <item name="background">@drawable/background_button</item>
+    <style name="Button" parent="MatchParentWrapContent" />
+
+    <style name="Button.Active">
+        <item name="android:background">@drawable/background_active_button</item>
         <item name="android:textColor">?attr/button_active_text_color</item>
-        <item name="android:layout_marginHorizontal">?attr/primary_margin_horizontal</item>
+    </style>
+
+    <style name="Button.InActive">
+        <item name="android:background">@drawable/background_inactive_button</item>
+        <item name="android:textColor">?attr/button_inactive_text_color</item>
+    </style>
+
+    <style name="BottomDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/ModalSheet</item>
+    </style>
+
+    <style name="ModalSheet" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/background_dialog</item>
     </style>
 
 </resources>

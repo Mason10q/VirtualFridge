@@ -76,4 +76,7 @@ dependencies {
 
     implementation(Libs.AndroidX.navigationUiKtx)
     implementation(Libs.AndroidX.navigationFragmentKtx)
+
+    testImplementation(Libs.Test.mockito)
+    testImplementation(Libs.Test.junit)
 }

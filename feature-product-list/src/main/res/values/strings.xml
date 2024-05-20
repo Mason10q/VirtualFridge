@@ -8,4 +8,14 @@
     <string name="screen_add_grocery_list_title">Создание списка</string>
     <string name="screen_add_grocery_list_add_btn">Создать список</string>
     <string name="screen_add_grocery_list_hint">Название списка</string>
+
+    <string name="dialog_grocery_list_title">Управление списком</string>
+    <string name="dialog_grocery_list_rename">Переименовать</string>
+    <string name="dialog_grocery_list_share">Поделиться</string>
+    <string name="dialog_grocery_list_remove">Удалить</string>
+
+    <string name="dialog_rename_grocery_list_title">Переименовать список</string>
+    <string name="dialog_rename_grocery_list_back_btn">Назад</string>
+    <string name="dialog_rename_grocery_list_save_btn">Сохранить</string>
+
 </resources>

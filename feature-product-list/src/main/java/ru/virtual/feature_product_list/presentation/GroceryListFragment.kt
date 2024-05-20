@@ -2,6 +2,7 @@ package ru.virtual.feature_product_list.presentation
 
 import android.content.Context
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import ru.virtual.core_navigation.R as navR
@@ -58,6 +59,15 @@ class GroceryListFragment: StateFragment<FragmentGroceryListBinding, GroceryList
                     binding.emptyLayout.root.visibility = View.GONE
                 }
             }
+        }
+
+        adapter.setOnRedactButtonClick { list ->
+            RedactGroceryListDialog().apply {
+                arguments = bundleOf("listId" to list.id)
+                setOnDismissListener {
+                    lifecycleScope.launch { viewModel.getGroceryLists() } //TODO:updates whole recycler, bad
+                }
+            }.show(parentFragmentManager, "")
         }
     }
 

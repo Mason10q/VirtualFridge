@@ -17,7 +17,7 @@
     </style>
 
     <style name="Text.H2.ScreenTitle">
-        <item name="android:layout_marginHorizontal">26dp</item>
+        <item name="android:layout_marginHorizontal">?attr/primary_margin_horizontal</item>
     </style>
 
     <style name="Text.H3">

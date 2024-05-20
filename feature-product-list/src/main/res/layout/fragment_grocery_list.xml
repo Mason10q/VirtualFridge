@@ -8,6 +8,7 @@
         android:id="@+id/title"
         style="@style/Text.H2.ScreenTitle"
         android:text="@string/screen_grocery_list_title"
+        android:layout_marginTop="36dp"
         app:layout_constraintBottom_toTopOf="@id/grocery_list_recycler"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

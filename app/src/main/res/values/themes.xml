@@ -2,8 +2,13 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.VirtualFridge" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="text_primary">@color/black</item>
+        <item name="accent_secondary">@color/red</item>
+        <item name="exc_background_color">@color/white</item>
         <item name="button_active_color">@color/black</item>
         <item name="button_active_text_color">@color/white</item>
+        <item name="button_inactive_color">@color/white</item>
+        <item name="button_inactive_stroke_color">@color/shark</item>
+        <item name="button_inactive_text_color">@color/shark</item>
         <item name="bottom_nav_color">@color/white</item>
         <item name="divider_color">@color/grey</item>
         <item name="primary_margin_horizontal">@dimen/primary_margin_horizontal</item>

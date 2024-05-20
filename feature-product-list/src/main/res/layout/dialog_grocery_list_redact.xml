@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchParent"
+    android:orientation="vertical"
+    android:paddingHorizontal="?attr/primary_margin_horizontal" >
+    
+    <TextView
+        style="@style/Text.H3"
+        android:text="@string/dialog_grocery_list_title"
+        android:layout_marginTop="36dp" />
+
+    <LinearLayout
+        style="@style/MatchParentWrapContent"
+        android:orientation="vertical"
+        android:layout_marginTop="26dp">
+
+        <LinearLayout
+            android:id="@+id/rename"
+            style="@style/MatchParentWrapContent"
+            android:orientation="horizontal">
+
+            <ImageView
+                style="@style/WrapContent"
+                android:src="@drawable/ic_pencil"/>
+
+            <TextView
+                style="@style/Text.H4.Regular"
+                android:text="@string/dialog_grocery_list_rename" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/share"
+            style="@style/MatchParentWrapContent"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <ImageView
+                style="@style/WrapContent"
+                android:src="@drawable/ic_share"/>
+
+            <TextView
+                style="@style/Text.H4.Regular"
+                android:text="@string/dialog_grocery_list_share" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/remove"
+            style="@style/MatchParentWrapContent"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="36dp">
+
+            <ImageView
+                style="@style/WrapContent"
+                android:src="@drawable/ic_trash" />
+
+            <TextView
+                style="@style/Text.H4.Regular"
+                android:text="@string/dialog_grocery_list_remove"
+                android:textColor="?attr/accent_secondary"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

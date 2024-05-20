@@ -14,6 +14,9 @@ import ru.virtual.core_db.tables.ProductTable
 @Dao
 interface GroceryListDao {
 
+    @Query("select * from GroceryLists where id = :listId")
+    fun getGroceryListById(listId: Int): Single<GroceryListTable>
+
     @Query("select * from GroceryLists")
     fun getGroceryLists(): Single<List<GroceryListTable>>
 

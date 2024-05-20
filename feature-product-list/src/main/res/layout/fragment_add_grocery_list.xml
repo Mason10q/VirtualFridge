@@ -39,8 +39,9 @@
 
     <Button
         android:id="@+id/add_btn"
-        style="@style/Button"
+        style="@style/Button.Active"
         android:layout_marginTop="36dp"
+        android:layout_marginHorizontal="?attr/primary_margin_horizontal"
         android:enabled="false"
         android:text="@string/screen_add_grocery_list_add_btn"
         app:layout_constraintStart_toStartOf="parent"

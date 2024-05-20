@@ -13,6 +13,9 @@ import androidx.annotation.IntRange
 @EndpointUrl(BuildConfig.ENDPOINT_URL + "/groceryList/")
 interface GroceryListApi {
 
+    @GET("list")
+    fun getGroceryListById(@Query("listId") listId: Int): Single<GroceryListDto>
+
     @GET("lists")
     fun getGroceryLists(
         @Query("page") @IntRange(from = 1) page: Int = 1,

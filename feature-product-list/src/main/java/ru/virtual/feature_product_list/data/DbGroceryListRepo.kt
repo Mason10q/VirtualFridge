@@ -1,5 +1,6 @@
 package ru.virtual.feature_product_list.data
 
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import ru.virtual.core_android.Mapper
 import ru.virtual.core_db.GroceryListDao
@@ -14,6 +15,10 @@ class DbGroceryListRepo @Inject constructor(
     private val groceryListMapper: Mapper<GroceryList, GroceryListTable>,
     private val groceryMapper: Mapper<Grocery, GroceryProduct>
 ): GroceryListRepo {
+
+    override fun getGroceryListById(listId: Int): Single<GroceryList> = dao.getGroceryListById(listId)
+        .subscribeOn(Schedulers.io())
+        .map(groceryListMapper::map)
 
     override fun getGroceryLists(pageNum: Int) = dao.getGroceryLists()
         .subscribeOn(Schedulers.io())

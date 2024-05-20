@@ -20,13 +20,9 @@ import javax.inject.Singleton
 
 @Module
 class GroceryListRepoModule(private val context: Context) {
-    @Provides
-    @Singleton
-    fun provideNetworkManager(): NetworkUtil = NetworkUtil(context)
 
     @Provides
     fun provideGroceryListRepo(
-        networkManager: NetworkUtil,
         api: GroceryListApi,
         dao: GroceryListDao,
         groceryDtoMapper: Mapper<Grocery, GroceryDto>,
@@ -34,7 +30,7 @@ class GroceryListRepoModule(private val context: Context) {
         groceryListDtoMapper: Mapper<GroceryList, GroceryListDto>,
         groceryListTableMapper: Mapper<GroceryList, GroceryListTable>
     ): GroceryListRepo =
-        if (networkManager.isInternetAvailable()) {
+        if (context.getSharedPreferences("AppPreferences", Context.MODE_PRIVATE).getBoolean("online", false)) {
             NetworkGroceryListRepo(api, groceryListDtoMapper, groceryDtoMapper)
         } else {
             DbGroceryListRepo(dao, groceryListTableMapper, groceryTableMapper)

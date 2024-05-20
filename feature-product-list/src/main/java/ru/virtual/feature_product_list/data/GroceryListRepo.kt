@@ -8,6 +8,8 @@ import ru.virtual.feature_product_list.domain.entities.GroceryList
 
 interface GroceryListRepo {
 
+    fun getGroceryListById(listId: Int): Single<GroceryList>
+
     fun getGroceryLists(pageNum: Int): Single<List<GroceryList>>
 
     fun getGroceriesFromList(listId: Int, pageNum: Int): Single<List<Grocery>>

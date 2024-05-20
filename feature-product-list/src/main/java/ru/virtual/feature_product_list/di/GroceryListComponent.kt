@@ -6,6 +6,8 @@ import ru.virtual.core_db.DbModule
 import ru.virtual.core_network.di.NetworkModule
 import ru.virtual.feature_product_list.presentation.AddGroceryListFragment
 import ru.virtual.feature_product_list.presentation.GroceryListFragment
+import ru.virtual.feature_product_list.presentation.RedactGroceryListDialog
+import ru.virtual.feature_product_list.presentation.RenameGroceryListDialog
 import javax.inject.Singleton
 
 @Singleton
@@ -15,6 +17,10 @@ interface GroceryListComponent {
     fun inject(fragment: GroceryListFragment)
 
     fun inject(fragment: AddGroceryListFragment)
+
+    fun inject(dialog: RedactGroceryListDialog)
+
+    fun inject(dialog: RenameGroceryListDialog)
 
     @Component.Builder
     interface Builder {

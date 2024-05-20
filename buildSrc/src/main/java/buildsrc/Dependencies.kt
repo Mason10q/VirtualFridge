@@ -47,6 +47,11 @@ object Versions {
         const val carousel = "1.0.4"
         const val roundedProgressBar="3.0.0"
     }
+
+    object Test {
+        const val junit = "4.13.2"
+        const val mockito = "4.3.1"
+    }
 }
 
 object Libs {
@@ -98,5 +103,10 @@ object Libs {
         const val delegateAdapter = "io.github.d00mch:delegateadapter:${Versions.UI.delegateAdapter}"
         const val carousel = "com.github.akshaaatt:Sliding-Carousel:${Versions.UI.carousel}"
         const val roundedProgressBar = "com.github.MackHartley:RoundedProgressBar:${Versions.UI.roundedProgressBar}"
+    }
+
+    object Test {
+        const val junit = "junit:junit:${Versions.Test.junit}"
+        const val mockito = "org.mockito:mockito-core:${Versions.Test.mockito}"
     }
 }
