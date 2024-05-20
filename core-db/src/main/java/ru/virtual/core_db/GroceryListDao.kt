@@ -1,5 +1,6 @@
 package ru.virtual.core_db
 
+import androidx.annotation.IntRange
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -8,8 +9,6 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import ru.virtual.core_db.tables.GroceryListTable
 import ru.virtual.core_db.tables.GroceryProduct
-import ru.virtual.core_db.tables.GroceryTable
-import ru.virtual.core_db.tables.ProductTable
 
 @Dao
 interface GroceryListDao {
@@ -17,11 +16,18 @@ interface GroceryListDao {
     @Query("select * from GroceryLists where id = :listId")
     fun getGroceryListById(listId: Int): Single<GroceryListTable>
 
-    @Query("select * from GroceryLists")
-    fun getGroceryLists(): Single<List<GroceryListTable>>
+    @Query("select * from GroceryLists limit :pageSize offset (:page - 1) * :pageSize")
+    fun getGroceryLists(
+        @IntRange(from = 1) page: Int = 1,
+        @IntRange(from = 1, to = MAX_PAGE_SIZE.toLong()) pageSize: Int = DEFAULT_PAGE_SIZE
+    ): Single<List<GroceryListTable>>
 
-    @Query("select G.productId, P.name, G.amount, G.marked from Groceries as G join Products as P on G.productId = P.id where groceryListId = :listId")
-    fun getGroceriesFromList(listId: Int): Single<List<GroceryProduct>>
+    @Query("select G.productId, P.name, G.amount, G.marked from Groceries as G join Products as P on G.productId = P.id where groceryListId = :listId limit :pageSize offset (:page - 1) * :pageSize")
+    fun getGroceriesFromList(
+        listId: Int,
+        @IntRange(from = 1) page: Int = 1,
+        @IntRange(from = 1, to = MAX_PAGE_SIZE.toLong()) pageSize: Int = DEFAULT_PAGE_SIZE
+    ): Single<List<GroceryProduct>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addGroceryList(groceryList: GroceryListTable): Completable
@@ -41,12 +47,21 @@ interface GroceryListDao {
     @Query("update Groceries set amount = amount - 1 where groceryListId = :listId and productId = :productId")
     fun decrementGroceryAmount(listId: Int, productId: Int): Completable
 
-    @Query("select G.productId, P.name, G.amount, G.marked from Groceries as G join Products as P on G.productId = P.id where P.name like :query")
-    fun searchProduct(query: String): Single<List<GroceryProduct>>
+    @Query("select G.productId, P.name, G.amount, G.marked from Groceries as G join Products as P on G.productId = P.id where P.name like :query limit :pageSize offset (:page - 1) * :pageSize")
+    fun searchProduct(
+        query: String,
+        @IntRange(from = 1) page: Int = 1,
+        @IntRange(from = 1, to = MAX_PAGE_SIZE.toLong()) pageSize: Int = DEFAULT_PAGE_SIZE
+    ): Single<List<GroceryProduct>>
 
     @Query("update Groceries set marked = 1 where groceryListId = :listId and productId = :productId")
     fun markGroceryInList(listId: Int, productId: Int): Completable
 
     @Query("update Groceries set marked = 0 where groceryListId = :listId and productId = :productId")
     fun unMarkGroceryInList(listId: Int, productId: Int): Completable
+
+    companion object {
+        const val DEFAULT_PAGE_SIZE = 10
+        const val MAX_PAGE_SIZE = 20
+    }
 }

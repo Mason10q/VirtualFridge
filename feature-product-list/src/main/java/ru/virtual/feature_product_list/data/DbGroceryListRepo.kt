@@ -20,7 +20,7 @@ class DbGroceryListRepo @Inject constructor(
         .subscribeOn(Schedulers.io())
         .map(groceryListMapper::map)
 
-    override fun getGroceryLists(pageNum: Int) = dao.getGroceryLists()
+    override fun getGroceryLists(pageNum: Int) = dao.getGroceryLists(page = pageNum)
         .subscribeOn(Schedulers.io())
         .map(groceryListMapper::map)
 
