@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/WrapContent"
+    android:background="@drawable/background_grocery_list_name"
+    android:textColor="?attr/text_primary"
+    android:paddingVertical="8dp"
+    android:paddingHorizontal="13dp"/>

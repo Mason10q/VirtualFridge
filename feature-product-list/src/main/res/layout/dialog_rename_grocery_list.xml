@@ -13,13 +13,13 @@
     <EditText
         android:id="@+id/new_name_edit"
         style="@style/EditText"
-        android:layout_marginTop="?attr/primary_margin_horizontal">
+        android:layout_marginTop="26dp">
         <requestFocus/>
     </EditText>
     
     <LinearLayout
         style="@style/MatchParentWrapContent"
-        android:layout_marginTop="?attr/primary_margin_horizontal"
+        android:layout_marginTop="26dp"
         android:layout_marginBottom="36dp">
 
         <Button

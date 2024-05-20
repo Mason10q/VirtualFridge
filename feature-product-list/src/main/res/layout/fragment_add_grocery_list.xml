@@ -15,6 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
+            android:id="@+id/back_btn"
             style="@style/WrapContent"
             android:src="@drawable/ic_arrow"
             android:background="@null"/>
@@ -35,7 +36,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header"
-        app:layout_constraintBottom_toTopOf="@id/add_btn" />
+        app:layout_constraintBottom_toTopOf="@id/example_text">
+        <requestFocus/>
+    </EditText>
+    
+    <TextView
+        android:id="@+id/example_text"
+        style="@style/Text.H5.Regular"
+        android:text="@string/screen_add_grocery_list_example"
+        android:layout_marginTop="26dp"
+        android:layout_marginHorizontal="?attr/primary_margin_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name_edit"
+        app:layout_constraintBottom_toTopOf="@id/name_recycler"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/name_recycler"
+        style="@style/MatchParentWrapContent"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="?attr/primary_margin_horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/example_text"
+        app:layout_constraintBottom_toTopOf="@id/add_btn"/>
 
     <Button
         android:id="@+id/add_btn"
@@ -46,6 +72,6 @@
         android:text="@string/screen_add_grocery_list_add_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name_edit" />
+        app:layout_constraintTop_toBottomOf="@id/name_recycler" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

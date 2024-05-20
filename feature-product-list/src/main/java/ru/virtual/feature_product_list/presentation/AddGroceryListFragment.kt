@@ -1,5 +1,6 @@
 package ru.virtual.feature_product_list.presentation
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,12 +10,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import ru.virtual.core_android.ui.BaseFragment
 import ru.virtual.core_android.ui.SimpleTextWatcher
+import ru.virtual.core_android.ui.utils.addItemMargins
 import ru.virtual.core_db.DbModule
 import ru.virtual.core_navigation.R as navR
 import ru.virtual.feature_product_list.databinding.FragmentAddGroceryListBinding
 import ru.virtual.feature_product_list.di.DaggerGroceryListComponent
 import ru.virtual.feature_product_list.di.GroceryListRepoModule
 import ru.virtual.feature_product_list.domain.entities.GroceryList
+import java.text.SimpleDateFormat
+import java.util.Date
 import javax.inject.Inject
 
 class AddGroceryListFragment: BaseFragment<FragmentAddGroceryListBinding>(FragmentAddGroceryListBinding::class.java) {
@@ -22,6 +26,11 @@ class AddGroceryListFragment: BaseFragment<FragmentAddGroceryListBinding>(Fragme
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val viewModel by viewModels<GroceryListViewModel> { viewModelFactory }
+
+    private val exampleNameAdapter = ExampleNameAdapter()
+
+    @SuppressLint("SimpleDateFormat")
+    private val exampleNames = listOf("Завтрак", SimpleDateFormat("dd.MM.yyyy").format(Date()), "Выходные", "Обед", "Шашлыки", "На праздник", "Ужин", "День рождения")
 
 
     override fun onAttach(context: Context) {
@@ -40,6 +49,19 @@ class AddGroceryListFragment: BaseFragment<FragmentAddGroceryListBinding>(Fragme
                 binding.addBtn.isEnabled = !s.isNullOrEmpty()
             }
         })
+
+        binding.backBtn.setOnClickListener{ findNavController().navigateUp() }
+
+        binding.nameRecycler.also {
+            it.adapter = exampleNameAdapter
+            it.addItemMargins(0, 16)
+        }
+
+        exampleNameAdapter.addItems(exampleNames)
+
+        exampleNameAdapter.setOnItemClick { name ->
+            binding.nameEdit.setText(name)
+        }
     }
 
     private fun inject(context: Context) = DaggerGroceryListComponent.builder()

@@ -1,5 +1,6 @@
 package ru.virtual.virtualfridge
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -27,5 +28,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         networkStateController.subscribeOnInternetConnection()
+    }
+
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+        val host = supportFragmentManager.findFragmentById(R.id.nav_container) as NavHostFragment
+        host.navController.popBackStack()
     }
 }
