@@ -1,4 +1,4 @@
-package ru.virtual.feature_product_list.presentation
+package ru.virtual.feature_product_list.presentation.adapters
 
 import android.view.View
 import ru.virtual.core_android.ui.BaseAdapter
@@ -9,7 +9,7 @@ class ExampleNameAdapter: BaseAdapter<String, ItemGroceryListNameBinding>(ItemGr
 
     private var onItemClick: ((String) -> Unit)? = null
 
-    override fun bindView(binding: ItemGroceryListNameBinding, item: String) {
+    override fun bindView(binding: ItemGroceryListNameBinding, item: String, position: Int) {
         binding.root.text = item
     }
 

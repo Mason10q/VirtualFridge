@@ -13,13 +13,13 @@ abstract class BaseAdapter<DATA : Any, B : ViewBinding>(
 
     private val items = mutableListOf<DATA>()
 
-    abstract fun bindView(binding: B, item: DATA)
+    abstract fun bindView(binding: B, item: DATA, position: Int)
 
     open fun onClick(view: View, item: DATA, position: Int) {}
 
     private val callbacks = object : AdapterCallbacks<DATA, B> {
-        override fun bindViews(binding: B, item: DATA) =
-            bindView(binding, item)
+        override fun bindViews(binding: B, item: DATA, position: Int) =
+            bindView(binding, item, position)
 
         override fun onViewClicked(view: View, item: DATA, position: Int) = onClick(view, item, position)
     }
@@ -62,7 +62,7 @@ abstract class BaseAdapter<DATA : Any, B : ViewBinding>(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: DATA, position: Int) {
-            callbacks.bindViews(binding, item)
+            callbacks.bindViews(binding, item, position)
             binding.root.setOnClickListener { callbacks.onViewClicked(binding.root, item, position) }
         }
 

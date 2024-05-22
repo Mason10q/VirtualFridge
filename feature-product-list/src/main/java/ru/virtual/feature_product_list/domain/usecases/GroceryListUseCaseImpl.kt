@@ -22,7 +22,7 @@ class GroceryListUseCaseImpl @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ groceryList ->
 
-                val list = groceryList.joinToString{ "${it.name}, ${it.amount} шт. \n" }
+                val list = groceryList.joinToString(separator = ""){ "${it.name}, ${it.amount} шт. \n" }
 
                 Log.d("asd", list)
 

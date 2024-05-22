@@ -1,19 +1,16 @@
-package ru.virtual.feature_product_list.presentation
+package ru.virtual.feature_product_list.presentation.fragments
 
 import android.content.Context
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import ru.virtual.core_android.ui.BaseBottomSheetDialogFragment
 import ru.virtual.core_db.DbModule
 import ru.virtual.feature_product_list.databinding.DialogGroceryListRedactBinding
-import ru.virtual.feature_product_list.databinding.DialogRenameGroceryListBinding
 import ru.virtual.feature_product_list.di.DaggerGroceryListComponent
 import ru.virtual.feature_product_list.di.GroceryListRepoModule
+import ru.virtual.feature_product_list.presentation.vm.GroceryListViewModel
 import javax.inject.Inject
 
 class RedactGroceryListDialog :

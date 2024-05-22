@@ -29,7 +29,7 @@ data class GroceryTable(
     val groceryListId: Int,
     @ColumnInfo(name = "productId")
     val productId: Int,
-    @ColumnInfo(name = "amount", defaultValue = "1")
+    @ColumnInfo(name = "amount", defaultValue = "0")
     val amount: Int = 1,
     @ColumnInfo(name = "marked", defaultValue = "false")
     val marked: Boolean = false

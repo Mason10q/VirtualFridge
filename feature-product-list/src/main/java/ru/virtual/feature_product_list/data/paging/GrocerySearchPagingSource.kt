@@ -9,11 +9,12 @@ import ru.virtual.feature_product_list.domain.entities.Grocery
 
 class GrocerySearchPagingSource(
     private val repository: GroceryListRepo,
+    private val listId: Int,
     private val query: String
 ): RxPagingSource<Int, Grocery>() {
 
     override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, Grocery>> =
-        repository.searchProduct(pageNum = params.key ?: 1, query = query)
+        repository.searchProduct(query, listId, params.key ?: 1)
             .subscribeOn(Schedulers.io())
             .map { toLoadResult(it, params.key ?: 1) }
             .onErrorReturn { LoadResult.Error(it) }
@@ -23,7 +24,7 @@ class GrocerySearchPagingSource(
     private fun toLoadResult(data: List<Grocery>, position: Int): LoadResult<Int, Grocery> {
         return LoadResult.Page(
             data = data,
-            prevKey = if (position == 1) null else position - 1,
+            prevKey = null,
             nextKey = if (data.isEmpty()) null else position + 1
         )
     }

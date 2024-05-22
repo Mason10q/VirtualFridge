@@ -22,15 +22,19 @@ interface GroceryListRepo {
 
     fun addGroceryToList(listId: Int, productId: Int): Completable
 
+    fun removeGroceryFromList(listId: Int, productId: Int): Completable
+
     fun incrementGroceryAmount(listId: Int, productId: Int): Completable
 
     fun decrementGroceryAmount(listId: Int, productId: Int): Completable
 
-    fun searchProduct(query: String, pageNum: Int): Single<List<Grocery>>
+    fun searchProduct(query: String, listId: Int, pageNum: Int): Single<List<Grocery>>
 
     fun markGroceryInList(listId: Int, productId: Int): Completable
 
     fun unMarkGroceryInList(listId: Int, productId: Int): Completable
+
+    fun addProduct(productName: String): Single<Long>
 
     companion object {
         val pagerConfig = PagingConfig(

@@ -11,7 +11,7 @@ import ru.virtual.feature_product_list.data.GroceryListRepo
 import ru.virtual.feature_product_list.domain.entities.Grocery
 import ru.virtual.feature_product_list.domain.entities.GroceryList
 
-class GroceryListRepoTest {
+class GroceryListAmountsRepoTest {
 
     private lateinit var groceryListRepo: GroceryListRepo
 
@@ -76,12 +76,13 @@ class GroceryListRepoTest {
     fun `searchProduct returns list of groceries`() {
         val query = "Apple"
         val pageNum = 1
+        val listId = 1
         val expectedGroceries = listOf(Grocery(1, "Apple", 1, true))
 
-        Mockito.`when`(groceryListRepo.searchProduct(query, pageNum))
+        Mockito.`when`(groceryListRepo.searchProduct(query, listId, pageNum))
             .thenReturn(Single.just(expectedGroceries))
 
-        groceryListRepo.searchProduct(query, pageNum)
+        groceryListRepo.searchProduct(query, listId, pageNum)
             .test()
             .assertValue(expectedGroceries)
     }

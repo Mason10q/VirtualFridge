@@ -34,13 +34,17 @@
 
 
     <style name="FloatingButton" parent="WrapContent">
-        <item name="android:background">@drawable/background_floating_button</item>
-<!--        <item name="android:gravity">left|center_vertical</item>-->
+        <item name="android:backgroundTint">?attr/button_active_color</item>
         <item name="android:layout_marginEnd">@dimen/floating_btn_marginEnd</item>
         <item name="android:layout_marginBottom">@dimen/floating_btn_marginBottom</item>
         <item name="android:textColor">?attr/button_active_text_color</item>
         <item name="android:fontFamily">@font/poppins_regular</item>
-        <item name="android:textSize">@dimen/h6_text_size</item>
+        <item name="android:textSize">?attr/h6_text_size</item>
+    </style>
+
+    <style name="FloatingButton.Add">
+        <item name="iconTint">?attr/button_active_text_color</item>
+        <item name="icon">@drawable/ic_plus</item>
     </style>
 
     <style name="LoadingProgress">

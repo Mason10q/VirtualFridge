@@ -1,4 +1,4 @@
-package ru.virtual.feature_product_list.presentation
+package ru.virtual.feature_product_list.presentation.vm
 
 import android.content.Context
 import androidx.lifecycle.LiveData

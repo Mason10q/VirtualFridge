@@ -23,7 +23,7 @@ class GroceryPagingSource(
     private fun toLoadResult(data: List<Grocery>, position: Int): LoadResult<Int, Grocery> {
         return LoadResult.Page(
             data = data,
-            prevKey = if (position == 1) null else position - 1,
+            prevKey = null,
             nextKey = if (data.isEmpty()) null else position + 1
         )
     }

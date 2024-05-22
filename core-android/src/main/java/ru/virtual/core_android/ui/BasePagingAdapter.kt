@@ -15,14 +15,14 @@ abstract class BasePagingAdapter<DATA : Any, VB : ViewBinding>(
 
 
     private val callbacks = object : AdapterCallbacks<DATA, VB> {
-        override fun bindViews(binding: VB, item: DATA) =
-            bindView(binding, item)
+        override fun bindViews(binding: VB, item: DATA, position: Int) =
+            bindView(binding, item, position)
 
         override fun onViewClicked(view: View, item: DATA, position: Int) =
             onClick(view, item, position)
     }
 
-    abstract fun bindView(binding: VB, item: DATA)
+    abstract fun bindView(binding: VB, item: DATA, position: Int)
 
     open fun onClick(view: View, item: DATA, position: Int) {}
 
@@ -42,7 +42,7 @@ abstract class BasePagingAdapter<DATA : Any, VB : ViewBinding>(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: DATA, position: Int) {
-            callbacks.bindViews(binding, item)
+            callbacks.bindViews(binding, item, position)
             binding.root.setOnClickListener { callbacks.onViewClicked(binding.root, item, position) }
         }
     }

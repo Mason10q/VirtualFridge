@@ -1,5 +1,6 @@
 package ru.virtual.feature_product_list.data
 
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import ru.virtual.core_android.Mapper
@@ -44,6 +45,9 @@ class NetworkGroceryListRepo @Inject constructor(
         api.addGroceryToList(listId, productId)
             .subscribeOn(Schedulers.io())
 
+    override fun removeGroceryFromList(listId: Int, productId: Int): Completable = api.removeGroceryFromList(listId, productId)
+        .subscribeOn(Schedulers.io())
+
     override fun incrementGroceryAmount(listId: Int, productId: Int) =
         api.incrementGroceryAmount(listId, productId)
             .subscribeOn(Schedulers.io())
@@ -52,8 +56,8 @@ class NetworkGroceryListRepo @Inject constructor(
         api.decrementGroceryAmount(listId, productId)
             .subscribeOn(Schedulers.io())
 
-    override fun searchProduct(query: String, pageNum: Int) =
-        api.searchProduct(query = query, page = pageNum)
+    override fun searchProduct(query: String, listId: Int, pageNum: Int) =
+        api.searchProduct(query, listId, pageNum)
             .subscribeOn(Schedulers.io())
             .map(groceryMapper::map)
 
@@ -64,4 +68,6 @@ class NetworkGroceryListRepo @Inject constructor(
     override fun unMarkGroceryInList(listId: Int, productId: Int) =
         api.unMarkGroceryInList(listId, productId)
             .subscribeOn(Schedulers.io())
+
+    override fun addProduct(productName: String): Single<Long> = Single.never()
 }

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchParent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/header"
+        style="@style/MatchParentWrapContent"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/grocery_progress_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/back_btn"
+            style="@style/WrapContent"
+            android:src="@drawable/ic_arrow"
+            android:background="@null"/>
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/Text.H2.ScreenTitle" />
+
+    </LinearLayout>
+
+    <com.mackhartley.roundedprogressbar.RoundedProgressBar
+        android:id="@+id/grocery_progress_bar"
+        android:layout_height="8dp"
+        android:layout_width="0dp"
+        app:rpbCornerRadius="10dp"
+        app:rpbProgressColor="@color/black"
+        app:rpbBackgroundTextColor="@color/white_smoke"
+        app:rpbShowProgressText="false"
+        app:rpbProgress="40"
+        android:layout_marginHorizontal="?attr/primary_margin_horizontal"
+        android:layout_marginTop="26dp"
+        app:layout_constraintBottom_toTopOf="@id/grocery_recycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/grocery_recycler"
+        style="@style/MatchParent0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginTop="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/grocery_progress_bar" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/add_btn"
+        style="@style/FloatingButton.Add"
+        android:text="@string/screen_groceries_floating_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <include
+        android:id="@+id/loading"
+        layout="@layout/sublayout_loading"
+        android:visibility="gone"
+        android:text="@string/screen_grocery_list_floating_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
+    <include
+        android:id="@+id/empty_layout"
+        layout="@layout/empty_layout"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/empty_layout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

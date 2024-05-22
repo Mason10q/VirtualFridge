@@ -2,6 +2,8 @@ package ru.virtual.core_db
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -15,7 +17,8 @@ class DbModule(private val context: Context) {
         context.applicationContext,
         FridgeDataBase::class.java,
         "fridge_database"
-    ).build()
+    ).fallbackToDestructiveMigration()
+        .build()
 
     @Provides
     fun provideGroceryListDao(dataBase: FridgeDataBase) = dataBase.getGroceryListDao()

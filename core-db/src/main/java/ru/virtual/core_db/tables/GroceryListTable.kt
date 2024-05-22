@@ -10,9 +10,5 @@ data class GroceryListTable(
     @ColumnInfo(name = "id")
     val id: Int = 0,
     @ColumnInfo(name = "name")
-    val name: String,
-    @ColumnInfo(name = "groceryAmount", defaultValue = "0")
-    val groceryAmount: Int = 0,
-    @ColumnInfo(name = "productsMarked", defaultValue = "0")
-    val groceryMarked: Int = 0
+    val name: String
 )

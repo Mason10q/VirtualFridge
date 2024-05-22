@@ -25,14 +25,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/add_btn"
-        style="@style/FloatingButton"
+        style="@style/FloatingButton.Add"
         android:contentDescription="@string/screen_grocery_list_floating_btn"
         android:text="@string/screen_grocery_list_floating_btn"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <include
         android:id="@+id/loading"

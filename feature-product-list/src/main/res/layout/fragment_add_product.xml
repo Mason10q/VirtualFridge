@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchParent">
+
+    <LinearLayout
+        android:id="@+id/header"
+        style="@style/MatchParentWrapContent"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/name_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/back_btn"
+            style="@style/WrapContent"
+            android:src="@drawable/ic_arrow"
+            android:background="@null"/>
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/Text.H2.ScreenTitle"
+            android:text="@string/screen_add_product_title" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/name_edit"
+        style="@style/EditText"
+        android:inputType="text"
+        android:hint="@string/screen_add_product_hint"
+        android:layout_marginTop="26dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toTopOf="@id/example_text">
+        <requestFocus/>
+    </EditText>
+
+    <TextView
+        android:id="@+id/example_text"
+        style="@style/Text.H5.Regular"
+        android:text="@string/screen_add_product_example"
+        android:layout_marginTop="26dp"
+        android:layout_marginHorizontal="?attr/primary_margin_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name_edit"
+        app:layout_constraintBottom_toTopOf="@id/name_recycler"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/name_recycler"
+        style="@style/MatchParentWrapContent"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="?attr/primary_margin_horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/example_text"
+        app:layout_constraintBottom_toTopOf="@id/add_btn"/>
+
+    <Button
+        android:id="@+id/add_btn"
+        style="@style/Button.Active"
+        android:layout_marginTop="36dp"
+        android:layout_marginHorizontal="?attr/primary_margin_horizontal"
+        android:enabled="false"
+        android:text="@string/screen_add_product_add_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name_recycler" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

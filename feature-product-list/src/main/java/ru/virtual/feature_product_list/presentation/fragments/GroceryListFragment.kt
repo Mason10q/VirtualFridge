@@ -1,4 +1,4 @@
-package ru.virtual.feature_product_list.presentation
+package ru.virtual.feature_product_list.presentation.fragments
 
 import android.content.Context
 import android.view.View
@@ -19,6 +19,8 @@ import ru.virtual.feature_product_list.R
 import ru.virtual.feature_product_list.databinding.FragmentGroceryListBinding
 import ru.virtual.feature_product_list.di.DaggerGroceryListComponent
 import ru.virtual.feature_product_list.di.GroceryListRepoModule
+import ru.virtual.feature_product_list.presentation.adapters.GroceryListAdapter
+import ru.virtual.feature_product_list.presentation.vm.GroceryListViewModel
 import javax.inject.Inject
 
 class GroceryListFragment: StateFragment<FragmentGroceryListBinding, GroceryListViewModel>(FragmentGroceryListBinding::class.java) {
@@ -68,6 +70,10 @@ class GroceryListFragment: StateFragment<FragmentGroceryListBinding, GroceryList
                     lifecycleScope.launch { viewModel.getGroceryLists() } //TODO:updates whole recycler, bad
                 }
             }.show(parentFragmentManager, "")
+        }
+
+        adapter.setOnItemClick { list ->
+            findNavController().navigate(navR.id.fragment_groceries, bundleOf("listId" to list.id))
         }
     }
 

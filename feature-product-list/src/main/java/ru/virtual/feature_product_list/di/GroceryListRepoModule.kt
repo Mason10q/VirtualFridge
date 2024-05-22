@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.Provides
 import ru.virtual.core_android.Mapper
 import ru.virtual.core_db.GroceryListDao
+import ru.virtual.core_db.tables.GroceryListAmounts
 import ru.virtual.core_db.tables.GroceryListTable
 import ru.virtual.core_db.tables.GroceryProduct
 import ru.virtual.core_network.GroceryListApi
@@ -28,7 +29,7 @@ class GroceryListRepoModule(private val context: Context) {
         groceryDtoMapper: Mapper<Grocery, GroceryDto>,
         groceryTableMapper: Mapper<Grocery, GroceryProduct>,
         groceryListDtoMapper: Mapper<GroceryList, GroceryListDto>,
-        groceryListTableMapper: Mapper<GroceryList, GroceryListTable>
+        groceryListTableMapper: Mapper<GroceryList, GroceryListAmounts>
     ): GroceryListRepo =
         if (context.getSharedPreferences("AppPreferences", Context.MODE_PRIVATE).getBoolean("online", false)) {
             NetworkGroceryListRepo(api, groceryListDtoMapper, groceryDtoMapper)

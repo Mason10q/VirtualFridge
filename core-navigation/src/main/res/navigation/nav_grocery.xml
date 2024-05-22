@@ -6,18 +6,54 @@
 
     <fragment
         android:id="@+id/fragment_grocery_list"
-        android:name="ru.virtual.feature_product_list.presentation.GroceryListFragment" >
+        android:name="ru.virtual.feature_product_list.presentation.fragments.GroceryListFragment" >
         <action
             android:id="@+id/action_fragment_grocery_list_to_fragment_add_grocery_list"
             app:destination="@id/fragment_add_grocery_list" />
+        <action
+            android:id="@+id/action_fragment_grocery_list_to_fragment_groceries"
+            app:destination="@id/fragment_groceries" />
     </fragment>
 
     <fragment
         android:id="@+id/fragment_add_grocery_list"
-        android:name="ru.virtual.feature_product_list.presentation.AddGroceryListFragment" >
+        android:name="ru.virtual.feature_product_list.presentation.fragments.AddGroceryListFragment" >
         <action
             android:id="@+id/action_fragment_add_grocery_list_to_fragment_grocery_list"
             app:destination="@id/fragment_grocery_list" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_groceries"
+        android:name="ru.virtual.feature_product_list.presentation.fragments.GroceriesFragment">
+
+        <action
+            android:id="@+id/action_fragment_groceries_to_fragment_grocery_list"
+            app:destination="@id/fragment_grocery_list" />
+        <action
+            android:id="@+id/action_fragment_groceries_to_fragment_add_groceries"
+            app:destination="@id/fragment_add_groceries" />
+        <action
+            android:id="@+id/action_fragment_groceries_to_fragment_add_product"
+            app:destination="@id/fragment_add_product" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/fragment_add_groceries"
+        android:name="ru.virtual.feature_product_list.presentation.fragments.AddGroceriesFragment">
+        <action
+            android:id="@+id/action_fragment_add_groceries_to_fragment_groceries"
+            app:destination="@id/fragment_groceries" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/fragment_add_product"
+        android:name="ru.virtual.feature_product_list.presentation.fragments.AddProductFragment">
+        <action
+            android:id="@+id/action_fragment_add_product_to_fragment_groceries"
+            app:destination="@id/fragment_groceries" />
     </fragment>
 
 

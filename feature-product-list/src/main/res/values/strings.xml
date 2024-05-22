@@ -18,5 +18,19 @@
     <string name="dialog_rename_grocery_list_title">Переименовать список</string>
     <string name="dialog_rename_grocery_list_back_btn">Назад</string>
     <string name="dialog_rename_grocery_list_save_btn">Сохранить</string>
+    
+    <string name="screen_add_grocery_title">Добавление продукта</string>
+    <string name="screen_add_grocery_search">Поиск</string>
+    <string name="screen_add_grocery_floating_btn">Добавить продукты</string>
+    <string name="screen_add_grocery_empty_list_text">Базовые продукты пока не были загружены</string>
+    <string name="screen_add_grocery_empty_list_description">Подключитесь к интернету для доступа к этой функции или добавьте продукт самостоятельно</string>
 
+    <string name="screen_groceries_empty_list_text">Что вам нужно купить?</string>
+    <string name="screen_groceries_empty_list_description">Нажмите на плюс, чтобы добавлять товары</string>
+    <string name="screen_groceries_floating_btn">добавить продукты</string>
+    
+    <string name="screen_add_product_title">Добавление продукта</string>
+    <string name="screen_add_product_add_btn">Добавить продукт</string>
+    <string name="screen_add_product_hint">Название продукта</string>
+    <string name="screen_add_product_example">Например</string>
 </resources>

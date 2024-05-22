@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/MatchParent"
     android:orientation="vertical"
-    android:paddingHorizontal="?attr/primary_margin_horizontal" >
-    
+    android:paddingHorizontal="?attr/primary_margin_horizontal">
+
     <TextView
         style="@style/Text.H3"
         android:text="@string/dialog_grocery_list_title"
@@ -21,7 +22,7 @@
 
             <ImageView
                 style="@style/WrapContent"
-                android:src="@drawable/ic_pencil"/>
+                android:src="@drawable/ic_pencil" />
 
             <TextView
                 style="@style/Text.H4.Regular"
@@ -37,7 +38,7 @@
 
             <ImageView
                 style="@style/WrapContent"
-                android:src="@drawable/ic_share"/>
+                android:src="@drawable/ic_share" />
 
             <TextView
                 style="@style/Text.H4.Regular"
@@ -54,7 +55,8 @@
 
             <ImageView
                 style="@style/WrapContent"
-                android:src="@drawable/ic_trash" />
+                android:src="@drawable/ic_trash"
+                app:tint="?attr/accent_secondary" />
 
             <TextView
                 style="@style/Text.H4.Regular"

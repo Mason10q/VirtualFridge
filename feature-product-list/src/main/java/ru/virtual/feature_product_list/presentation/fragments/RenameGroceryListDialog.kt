@@ -1,4 +1,4 @@
-package ru.virtual.feature_product_list.presentation
+package ru.virtual.feature_product_list.presentation.fragments
 
 import android.content.Context
 import android.view.View
@@ -10,6 +10,7 @@ import ru.virtual.core_db.DbModule
 import ru.virtual.feature_product_list.databinding.DialogRenameGroceryListBinding
 import ru.virtual.feature_product_list.di.DaggerGroceryListComponent
 import ru.virtual.feature_product_list.di.GroceryListRepoModule
+import ru.virtual.feature_product_list.presentation.vm.GroceryListViewModel
 import javax.inject.Inject
 
 class RenameGroceryListDialog :
