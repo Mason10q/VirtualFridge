@@ -14,14 +14,15 @@ import javax.inject.Inject
 class NetworkGroceryListRepo @Inject constructor(
     private val api: GroceryListApi,
     private val groceryListMapper: Mapper<GroceryList, GroceryListDto>,
-    private val groceryMapper: Mapper<Grocery, GroceryDto>
+    private val groceryMapper: Mapper<Grocery, GroceryDto>,
+    private val familyId: Int
 ) : GroceryListRepo {
 
     override fun getGroceryListById(listId: Int): Single<GroceryList> = api.getGroceryListById(listId)
         .subscribeOn(Schedulers.io())
         .map(groceryListMapper::map)
 
-    override fun getGroceryLists(pageNum: Int) = api.getGroceryLists(page = pageNum)
+    override fun getGroceryLists(pageNum: Int) = api.getGroceryLists(familyId, page = pageNum)
         .subscribeOn(Schedulers.io())
         .map(groceryListMapper::map)
 
@@ -31,7 +32,7 @@ class NetworkGroceryListRepo @Inject constructor(
             .map(groceryMapper::map)
 
     override fun addGroceryList(name: String) =
-        api.addGroceryList(name)
+        api.addGroceryList(familyId, name)
             .subscribeOn(Schedulers.io())
 
     override fun removeGroceryList(listId: Int) = api.removeGroceryList(listId)

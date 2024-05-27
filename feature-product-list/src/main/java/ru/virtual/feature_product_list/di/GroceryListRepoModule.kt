@@ -30,11 +30,14 @@ class GroceryListRepoModule(private val context: Context) {
         groceryTableMapper: Mapper<Grocery, GroceryProduct>,
         groceryListDtoMapper: Mapper<GroceryList, GroceryListDto>,
         groceryListTableMapper: Mapper<GroceryList, GroceryListAmounts>
-    ): GroceryListRepo =
-        if (context.getSharedPreferences("AppPreferences", Context.MODE_PRIVATE).getBoolean("online", false)) {
-            NetworkGroceryListRepo(api, groceryListDtoMapper, groceryDtoMapper)
+    ): GroceryListRepo {
+        val sp = context.getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
+
+        return if (sp.getBoolean("online", false)) {
+            NetworkGroceryListRepo(api, groceryListDtoMapper, groceryDtoMapper, sp.getInt("familyId", -1))
         } else {
             DbGroceryListRepo(dao, groceryListTableMapper, groceryTableMapper)
         }
+    }
 
 }
