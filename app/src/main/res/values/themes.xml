@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.VirtualFridge" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <item name="text_primary">@color/black</item>
+        <item name="text_secondary">@color/star_dust</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="accent_primary">@color/turquoise</item>
         <item name="accent_secondary">@color/red</item>

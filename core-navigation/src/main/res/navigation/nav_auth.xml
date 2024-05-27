@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_auth"
+    app:startDestination="@id/fragment_enter_email">
+
+    <fragment
+        android:id="@+id/fragment_enter_email"
+        android:name="ru.virtual.feature_auth.presentation.EnterEmailFragment">
+        <action
+            android:id="@+id/action_fragment_enter_email_to_fragment_enter_code"
+            app:destination="@id/fragment_enter_code" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_enter_code"
+        android:name="ru.virtual.feature_auth.presentation.EnterCodeFragment">
+        <action
+            android:id="@+id/action_fragment_enter_code_to_fragment_enter_email"
+            app:destination="@id/fragment_enter_email" />
+    </fragment>
+
+</navigation>

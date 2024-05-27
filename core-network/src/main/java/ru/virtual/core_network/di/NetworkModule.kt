@@ -11,6 +11,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit.Builder
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.virtual.core_network.AuthApi
 import ru.virtual.core_network.BuildConfig
 import ru.virtual.core_network.FridgeService
 import ru.virtual.core_network.GroceryListApi
@@ -56,4 +57,8 @@ class NetworkModule {
     @Singleton
     @Provides
     fun provideGroceryListApi(builder: Builder) = builder.buildApi<GroceryListApi>()
+
+    @Singleton
+    @Provides
+    fun provideAuthApi(builder: Builder)= builder.buildApi<AuthApi>()
 }

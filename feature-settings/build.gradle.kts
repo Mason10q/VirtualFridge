@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.virtual.core_android"
+    namespace = "ru.virtual.feature_settings"
     compileSdk = Versions.compileSdk
 
     defaultConfig {
@@ -40,24 +40,23 @@ android {
 }
 
 dependencies {
-    implementation(project(":core-network"))
+
+    implementation(project(":core-android"))
     implementation(project(":core-res"))
+    implementation(project(":core-navigation"))
+    implementation(project(":feature-auth"))
 
     implementation(Libs.AndroidX.core)
     implementation(Libs.AndroidX.appCompat)
+    implementation(Libs.AndroidX.fragments)
     implementation(Libs.Google.material)
-    implementation(Libs.AndroidX.recyclerView)
-    implementation(Libs.AndroidX.constraintlayout)
+
+    implementation(Libs.RxJava.rxJava)
+    implementation(Libs.RxJava.rxJavaAndroid)
 
     implementation(Libs.DI.dagger)
     kapt(Libs.DI.daggerCompiler)
-
-    implementation(Libs.Network.ohttp)
-    implementation(Libs.UI.picasso)
-
-    implementation(Libs.RxJava.rxJava)
-
-    implementation(Libs.AndroidX.paging)
-
-    implementation(Libs.threetenabp)
+    
+    implementation(Libs.AndroidX.navigationUiKtx)
+    implementation(Libs.AndroidX.navigationFragmentKtx)
 }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="?attr/primary_margin_horizontal">
+
+    <include
+        layout="@layout/layout_back_button_header"
+        android:id="@+id/header"
+        style="@style/MatchParentWrapContent"
+        android:text="@string/screen_enter_code_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    
+    <ScrollView
+        style="@style/MatchParentWrapContent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            style="@style/MatchParent"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Text.H4.Regular"
+                android:text="@string/screen_about_app_text"/>
+
+            <ImageView
+                style="@style/WrapContent"
+                android:src="@drawable/ic_fridge"
+                android:layout_marginTop="26dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                style="@style/Text.H6.Regular"
+                android:layout_marginTop="16dp"
+                android:text="@string/screen_about_app_company_name" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

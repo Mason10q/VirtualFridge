@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchParentWrapContent"
+    android:orientation="horizontal"
+    android:paddingLeft="16dp"
+    android:paddingVertical="10dp">
+
+    <ImageButton
+        android:id="@+id/back_btn"
+        style="@style/WrapContent"
+        android:src="@drawable/ic_arrow"
+        android:background="@null"/>
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/Text.H2.ScreenTitle"
+        android:text="Title" />
+
+</LinearLayout>
+

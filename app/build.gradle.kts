@@ -49,6 +49,8 @@ dependencies {
     implementation(project(":core-res"))
     implementation(project(":core-db"))
     implementation(project(":feature-product-list"))
+    implementation(project(":feature-auth"))
+    implementation(project(":feature-settings"))
 
     implementation(Libs.AndroidX.core)
     implementation(Libs.AndroidX.appCompat)

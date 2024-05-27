@@ -2,6 +2,7 @@
 <resources>
 
     <attr name="text_primary" format="color" />
+    <attr name="text_secondary" format="color" />
     <attr name="accent_secondary" format="color" />
     <attr name="accent_primary" format="color" />
     <attr name="exc_background_color" format="color" />

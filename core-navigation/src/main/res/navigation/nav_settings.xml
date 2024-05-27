@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_settings"
+    app:startDestination="@id/fragment_settings">
+
+    <fragment
+        android:id="@+id/fragment_settings"
+        android:name="ru.virtual.feature_settings.SettingsFragment" >
+        <action
+            android:id="@+id/action_fragment_settings_to_fragment_about_app"
+            app:destination="@id/fragment_about_app" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_about_app"
+        android:name="ru.virtual.feature_settings.AboutAppFragment" >
+        <action
+            android:id="@+id/action_fragment_about_app_to_fragment_settings"
+            app:destination="@id/fragment_settings" />
+    </fragment>
+
+    <include app:graph="@navigation/nav_auth"/>
+
+</navigation>

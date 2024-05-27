@@ -30,5 +30,13 @@ class NetworkStateController(private val context: Context) {
 
     fun subscribeOnInternetConnection() = NetworkUtil(context).subscribeOnInternetConnection(networkCallback)
 
+    fun subscribeOnLoggedIn() {
+        sp.registerOnSharedPreferenceChangeListener{ sp, key ->
+            if(checkIfLoggedIn()) {
+                sp.edit().putBoolean("online", NetworkUtil(context).isInternetAvailable()).apply()
+            }
+        }
+    }
+
 }
 
