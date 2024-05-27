@@ -29,10 +29,12 @@
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_bar"
-        style="@style/MatchParentWrapContent"
+        style="@style/EditText"
         android:layout_marginHorizontal="?attr/primary_margin_horizontal"
         android:layout_marginTop="26dp"
         android:queryHint="@string/screen_add_grocery_search"
+        android:imeOptions="actionDone"
+        android:inputType="text"
         app:iconifiedByDefault="false"
         app:layout_constraintBottom_toTopOf="@id/grocery_recycler"
         app:layout_constraintEnd_toEndOf="parent"

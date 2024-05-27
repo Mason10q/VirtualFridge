@@ -58,11 +58,9 @@ class DbGroceryListRepo @Inject constructor(
         .subscribeOn(Schedulers.io())
         .map(groceryMapper::map)
 
-    override fun markGroceryInList(listId: Int, productId: Int) = dao.markGroceryInList(listId, productId)
-        .subscribeOn(Schedulers.io())
-
-    override fun unMarkGroceryInList(listId: Int, productId: Int) = dao.unMarkGroceryInList(listId, productId)
-        .subscribeOn(Schedulers.io())
+    override fun setMarkState(listId: Int, productId: Int, state: Boolean): Completable =
+        dao.setGroceryMarkState(listId, productId, state)
+            .subscribeOn(Schedulers.io())
 
     override fun addProduct(productName: String): Single<Long> = dao.addProduct(ProductTable(name = productName))
         .subscribeOn(Schedulers.io())

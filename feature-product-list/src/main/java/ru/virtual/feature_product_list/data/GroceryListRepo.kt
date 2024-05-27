@@ -30,9 +30,7 @@ interface GroceryListRepo {
 
     fun searchProduct(query: String, listId: Int, pageNum: Int): Single<List<Grocery>>
 
-    fun markGroceryInList(listId: Int, productId: Int): Completable
-
-    fun unMarkGroceryInList(listId: Int, productId: Int): Completable
+    fun setMarkState(listId: Int, productId: Int, state: Boolean): Completable
 
     fun addProduct(productName: String): Single<Long>
 

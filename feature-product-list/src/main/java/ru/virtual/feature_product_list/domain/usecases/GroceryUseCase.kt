@@ -11,9 +11,9 @@ interface GroceryUseCase {
     fun getGroceries(listId: Int): Flow<PagingData<Grocery>>
     fun searchProducts(query: String, listId: Int): Flow<PagingData<Grocery>>
 
-    fun incrementGroceryAmount(listId: Int, productId: Int): Completable
+    fun incrementGroceryAmount(listId: Int, grocery: Grocery): Completable
 
-    fun decrementGroceryAmount(listId: Int, productId: Int): Completable
+    fun decrementGroceryAmount(listId: Int, grocery: Grocery): Completable
 
     fun getListGroceries(listId: Int): Flow<PagingData<Grocery>>
 
@@ -23,8 +23,6 @@ interface GroceryUseCase {
 
     fun removeGrocery(listId: Int, productId: Int): Completable
 
-    fun markGrocery(listId: Int, productId: Int): Completable
-
-    fun unMarkGrocery(listId: Int, productId: Int): Completable
+    fun setMarkState(listId: Int, productId: Int, state: Boolean): Completable
 
 }

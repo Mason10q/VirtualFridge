@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import ru.virtual.core_android.ui.BaseBottomSheetDialogFragment
 import ru.virtual.core_android.ui.SimpleTextWatcher
+import ru.virtual.core_android.ui.utils.setTextAndSelection
 import ru.virtual.core_db.DbModule
 import ru.virtual.feature_product_list.databinding.DialogRenameGroceryListBinding
 import ru.virtual.feature_product_list.di.DaggerGroceryListComponent
@@ -29,19 +30,20 @@ class RenameGroceryListDialog :
     }
 
     override fun setUpViews(view: View) {
+        with(binding) {
+            backBtn.setOnClickListener{ dialog?.dismiss() }
 
-        binding.backBtn.setOnClickListener{ dialog?.dismiss() }
-
-        binding.saveBtn.setOnClickListener{ _ ->
-            listId?.let { viewModel.renameGroceryList(it, binding.newNameEdit.text.toString()) }
-            dialog?.dismiss()
-        }
-
-        binding.newNameEdit.addTextChangedListener(object : SimpleTextWatcher {
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                binding.saveBtn.isEnabled = !s.isNullOrEmpty()
+            saveBtn.setOnClickListener{ _ ->
+                listId?.let { viewModel.renameGroceryList(it, binding.newNameEdit.text.toString()) }
+                dialog?.dismiss()
             }
-        })
+
+            newNameEdit.addTextChangedListener(object : SimpleTextWatcher {
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    binding.saveBtn.isEnabled = !s.isNullOrEmpty()
+                }
+            })
+        }
     }
 
     override fun getStartData() {
@@ -51,7 +53,7 @@ class RenameGroceryListDialog :
 
     override fun setUpObservers() {
         viewModel.groceryList.observe(viewLifecycleOwner) { groceryList ->
-            binding.newNameEdit.setText(groceryList.name)
+            binding.newNameEdit.setTextAndSelection(groceryList.name)
         }
     }
 

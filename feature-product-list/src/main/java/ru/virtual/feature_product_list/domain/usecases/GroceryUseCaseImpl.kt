@@ -23,16 +23,27 @@ class GroceryUseCaseImpl @Inject constructor(private val repository: GroceryList
     override fun searchProducts(query: String, listId: Int): Flow<PagingData<Grocery>> = Pager(GroceryListRepo.pagerConfig, initialKey = 1,
         pagingSourceFactory = { GrocerySearchPagingSource(repository, listId, query) }).flow
 
-    override fun incrementGroceryAmount(listId: Int, productId: Int): Completable =
-        repository.incrementGroceryAmount(listId, productId)
-            .observeOn(AndroidSchedulers.mainThread())
+    override fun incrementGroceryAmount(listId: Int, grocery: Grocery): Completable =
+        if(grocery.amount <= 0) {
+            repository.addGroceryToList(listId, grocery.productId)
+                .observeOn(AndroidSchedulers.mainThread())
+        } else {
+            repository.incrementGroceryAmount(listId, grocery.productId)
+                .observeOn(AndroidSchedulers.mainThread())
+        }
+
 
     override fun getListGroceries(listId: Int): Flow<PagingData<Grocery>> = Pager(GroceryListRepo.pagerConfig, initialKey = 1,
         pagingSourceFactory = { GroceryPagingSource(repository, listId) }).flow
 
-    override fun decrementGroceryAmount(listId: Int, productId: Int): Completable =
-        repository.decrementGroceryAmount(listId, productId)
-            .observeOn(AndroidSchedulers.mainThread())
+    override fun decrementGroceryAmount(listId: Int, grocery: Grocery): Completable =
+        if(grocery.amount == 1) {
+            repository.removeGroceryFromList(listId, grocery.productId)
+                .observeOn(AndroidSchedulers.mainThread())
+        } else {
+            repository.decrementGroceryAmount(listId, grocery.productId)
+                .observeOn(AndroidSchedulers.mainThread())
+        }
 
     override fun addProduct(productName: String): Single<Long> = repository.addProduct(productName)
         .observeOn(AndroidSchedulers.mainThread())
@@ -40,11 +51,7 @@ class GroceryUseCaseImpl @Inject constructor(private val repository: GroceryList
     override fun addGrocery(listId: Int, productId: Int): Completable = repository.addGroceryToList(listId, productId)
         .observeOn(AndroidSchedulers.mainThread())
 
-    override fun markGrocery(listId: Int, productId: Int): Completable =
-        repository.markGroceryInList(listId, productId)
-            .observeOn(AndroidSchedulers.mainThread())
-
-    override fun unMarkGrocery(listId: Int, productId: Int): Completable =
-        repository.unMarkGroceryInList(listId, productId)
+    override fun setMarkState(listId: Int, productId: Int, state: Boolean): Completable =
+        repository.setMarkState(listId, productId, state)
             .observeOn(AndroidSchedulers.mainThread())
 }

@@ -1,18 +1,16 @@
 package ru.virtual.feature_product_list.presentation.adapters
 
 import android.annotation.SuppressLint
-import android.util.Log
-import android.view.View
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import ru.virtual.core_android.ui.BasePagingAdapter
 import ru.virtual.feature_product_list.databinding.ItemAddGroceryBinding
-import ru.virtual.feature_product_list.databinding.ItemGroceryBinding
 import ru.virtual.feature_product_list.domain.entities.Grocery
 
 class AddGroceriesAdapter: BasePagingAdapter<Grocery, ItemAddGroceryBinding>(DIFF_CALLBACK, ItemAddGroceryBinding::inflate) {
 
-    private var onGroceryAddClick: ((Int, Int) -> Unit)? = null
-    private var onGroceryReduceClick: ((Int, Int) -> Unit)? = null
+    private var onGroceryAddClick: ((Grocery) -> Unit)? = null
+    private var onGroceryReduceClick: ((Grocery) -> Unit)? = null
 
 
     @SuppressLint("SetTextI18n")
@@ -21,52 +19,30 @@ class AddGroceriesAdapter: BasePagingAdapter<Grocery, ItemAddGroceryBinding>(DIF
             groceryName.text = item.name
             groceryAmount.text = item.amount.toString()
 
-            if(item.amount > 0) {
-                groceryAmount.visibility = View.VISIBLE
-                reduceBtn.visibility = View.VISIBLE
-            }
+            groceryAmount.isVisible = item.amount > 0
+            reduceBtn.isVisible = item.amount > 0
+            binding.groceryAmount.text = item.amount.toString()
+
 
             addBtn.setOnClickListener{
-                onGroceryAddClick?.invoke(item.productId, item.amount)
-
-                getItem(position)?.let {
-                    it.amount += 1
-                    binding.groceryAmount.text = it.amount.toString()
-                }
-
-                if(item.amount > 0) {
-                    groceryAmount.visibility = View.VISIBLE
-                    reduceBtn.visibility = View.VISIBLE
-                    //addBtn.isSelected = true
-                }
-
+                onGroceryAddClick?.invoke(item)
+                getItem(position)?.let { it.amount += 1 }
                 notifyItemChanged(position)
             }
 
             reduceBtn.setOnClickListener{
-                onGroceryReduceClick?.invoke(item.productId, item.amount)
-
-                getItem(position)?.let {
-                    it.amount -= 1
-                    binding.groceryAmount.text = it.amount.toString()
-
-                    if(it.amount == 0) {
-                        reduceBtn.visibility = View.GONE
-                        groceryAmount.visibility = View.GONE
-                        //addBtn.isSelected = false
-                    }
-                }
-
+                onGroceryReduceClick?.invoke(item)
+                getItem(position)?.let { it.amount -= 1 }
                 notifyItemChanged(position)
             }
         }
     }
 
-    fun setOnAddGroceryListener(listener: (Int, Int) -> Unit) {
+    fun setOnAddGroceryListener(listener: (Grocery) -> Unit) {
         onGroceryAddClick = listener
     }
 
-    fun setOnGroceryReduceListener(listener: (Int, Int) -> Unit) {
+    fun setOnGroceryReduceListener(listener: (Grocery) -> Unit) {
         onGroceryReduceClick = listener
     }
 

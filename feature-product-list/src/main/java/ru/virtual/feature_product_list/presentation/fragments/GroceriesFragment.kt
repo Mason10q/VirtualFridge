@@ -25,7 +25,7 @@ import ru.virtual.feature_product_list.domain.PercentUtil
 import ru.virtual.feature_product_list.presentation.adapters.GroceriesAdapter
 import ru.virtual.feature_product_list.presentation.vm.GroceryViewModel
 import javax.inject.Inject
-import ru.virtual.core_navigation.R as resR
+import ru.virtual.core_navigation.R as navR
 
 class GroceriesFragment :
     StateFragment<FragmentGroceriesBinding, GroceryViewModel>(FragmentGroceriesBinding::class.java) {
@@ -54,7 +54,7 @@ class GroceriesFragment :
         listId = arguments?.getInt("listId")
 
         lifecycleScope.launch {
-            listId?.let { viewModel.getListGroceriesIfNeeded(it) }
+            listId?.let { viewModel.getListGroceries(it) }
         }
 
         listId?.let { viewModel.getGroceryList(it) }
@@ -62,48 +62,48 @@ class GroceriesFragment :
 
     override fun setUpViews(view: View) {
         setUpEmptyLayout()
+        setUpAdapter()
 
-        binding.groceryRecycler.also {
-            it.adapter = adapter.withLoadStateFooter(FooterLoadStateAdapter())
-            it.addItemMargins(26, 26)
-        }
-
-        binding.backBtn.setOnClickListener { findNavController().navigateUp() }
-
-        adapter.addLoadStateListener { loadState ->
-            if (loadState.prepend.endOfPaginationReached) {
-                if (adapter.itemCount < 1) {
-                    binding.emptyLayout.root.visibility = View.VISIBLE
-                } else {
-                    binding.emptyLayout.root.visibility = View.GONE
-                }
-            }
-        }
-
-        adapter.setOnCheckBoxClick { checked, productId ->
-            listId?.let {
-                if (checked) {
-                    viewModel.markGrocery(it, productId)
-                } else {
-                    viewModel.unMarkGrocery(it, productId)
-                }
+        with(binding) {
+            groceryRecycler.also {
+                it.adapter = adapter.withLoadStateFooter(FooterLoadStateAdapter())
+                it.addItemMargins(26, 26)
             }
 
-            viewModel.groceriesAmount?.let {
-                binding.groceryProgressBar.setProgressPercentage(
-                    if (checked)
-                        binding.groceryProgressBar.getProgressPercentage() + PercentUtil.getPercents(1, it)
-                    else
-                        binding.groceryProgressBar.getProgressPercentage() - PercentUtil.getPercents(1, it)
+            backBtn.setOnClickListener {
+                findNavController().navigate(navR.id.fragment_grocery_list)
+            }
+
+
+            addBtn.setOnClickListener {
+                findNavController().navigate(
+                    navR.id.fragment_add_groceries,
+                    bundleOf("listId" to listId)
                 )
             }
         }
+    }
 
-        binding.addBtn.setOnClickListener {
-            findNavController().navigate(
-                resR.id.fragment_add_groceries,
-                bundleOf("listId" to listId)
-            )
+    private fun setUpAdapter() {
+        with(adapter) {
+            addLoadStateListener { loadState ->
+                if (loadState.prepend.endOfPaginationReached) {
+                    binding.emptyLayout.root.isVisible = itemCount < 1
+                }
+            }
+
+            setOnCheckBoxClick { checked, productId ->
+                listId?.let { viewModel.setMarkState(it, productId, checked) }
+                val startProgress = binding.groceryProgressBar.getProgressPercentage()
+
+                viewModel.groceriesAmount?.let { amount ->
+                    val onePart = PercentUtil.getPercents(1, amount)
+
+                    binding.groceryProgressBar.setProgressPercentage(
+                        startProgress + if(checked) onePart else -onePart
+                    )
+                }
+            }
         }
     }
 

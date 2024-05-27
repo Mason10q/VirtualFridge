@@ -24,8 +24,6 @@ class GroceryListUseCaseImpl @Inject constructor(
 
                 val list = groceryList.joinToString(separator = ""){ "${it.name}, ${it.amount} шт. \n" }
 
-                Log.d("asd", list)
-
                 val sendIntent: Intent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(Intent.EXTRA_TEXT, list)

@@ -61,11 +61,8 @@ interface GroceryListDao {
         @IntRange(from = 1, to = MAX_PAGE_SIZE.toLong()) pageSize: Int = DEFAULT_PAGE_SIZE
     ): Single<List<GroceryProduct>>
 
-    @Query("update Groceries set marked = 1 where groceryListId = :listId and productId = :productId")
-    fun markGroceryInList(listId: Int, productId: Int): Completable
-
-    @Query("update Groceries set marked = 0 where groceryListId = :listId and productId = :productId")
-    fun unMarkGroceryInList(listId: Int, productId: Int): Completable
+    @Query("update Groceries set marked = :state where groceryListId = :listId and productId = :productId")
+    fun setGroceryMarkState(listId: Int, productId: Int, state: Boolean): Completable
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addProduct(product: ProductTable): Single<Long>

@@ -45,41 +45,47 @@ class GroceryListFragment: StateFragment<FragmentGroceryListBinding, GroceryList
 
     override fun setUpViews(view: View) {
         setUpEmptyLayout()
+        setUpAdapter()
 
-        binding.groceryListRecycler.also {
-            it.adapter = adapter.withLoadStateFooter(FooterLoadStateAdapter())
-            it.addItemMargins(26, 26)
+        with(binding) {
+            groceryListRecycler.also {
+                it.adapter = adapter.withLoadStateFooter(FooterLoadStateAdapter())
+                it.addItemMargins(26, 26)
+            }
+
+            addBtn.setOnClickListener { findNavController().navigate(navR.id.fragment_add_grocery_list) }
         }
+    }
 
-        binding.addBtn.setOnClickListener{ findNavController().navigate(navR.id.fragment_add_grocery_list) }
-
-        adapter.addLoadStateListener { loadState ->
-            if(loadState.prepend.endOfPaginationReached) {
-                if(adapter.itemCount < 1) {
-                    binding.emptyLayout.root.visibility = View.VISIBLE
-                } else {
-                    binding.emptyLayout.root.visibility = View.GONE
+    private fun setUpAdapter() {
+        with(adapter) {
+            addLoadStateListener { loadState ->
+                if (loadState.prepend.endOfPaginationReached) {
+                    binding.emptyLayout.root.isVisible = itemCount < 1
                 }
             }
-        }
 
-        adapter.setOnRedactButtonClick { list ->
-            RedactGroceryListDialog().apply {
-                arguments = bundleOf("listId" to list.id)
-                setOnDismissListener {
-                    lifecycleScope.launch { viewModel.getGroceryLists() } //TODO:updates whole recycler, bad
-                }
-            }.show(parentFragmentManager, "")
-        }
+            setOnRedactButtonClick { list ->
+                RedactGroceryListDialog().apply {
+                    arguments = bundleOf("listId" to list.id)
+                    setOnDismissListener {
+                        lifecycleScope.launch { viewModel.getGroceryLists() } //TODO:updates whole recycler, bad
+                    }
+                }.show(parentFragmentManager, "")
+            }
 
-        adapter.setOnItemClick { list ->
-            findNavController().navigate(navR.id.fragment_groceries, bundleOf("listId" to list.id))
+            setOnItemClick { list ->
+                findNavController().navigate(
+                    navR.id.fragment_groceries,
+                    bundleOf("listId" to list.id)
+                )
+            }
         }
     }
 
     override fun getStartData() {
         lifecycleScope.launch {
-            viewModel.getGroceryListsIfNeeded()
+            viewModel.getGroceryLists()
         }
     }
 

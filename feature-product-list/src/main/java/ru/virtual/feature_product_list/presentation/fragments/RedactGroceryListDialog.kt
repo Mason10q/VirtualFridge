@@ -29,25 +29,26 @@ class RedactGroceryListDialog :
     }
 
     override fun setUpViews(view: View) {
-
-        binding.rename.setOnClickListener { _ ->
-            RenameGroceryListDialog().apply {
-                arguments = bundleOf("listId" to listId)
-            }.show(parentFragmentManager, "")
-        }
-
-        binding.share.setOnClickListener { _ ->
-            context?.let { context ->
-                listId?.let { listId ->
-                    viewModel.shareGroceryList(context, listId)
-                }
+        with(binding) {
+            rename.setOnClickListener { _ ->
+                RenameGroceryListDialog().apply {
+                    arguments = bundleOf("listId" to listId)
+                }.show(parentFragmentManager, "")
             }
-            dialog?.dismiss()
-        }
 
-        binding.remove.setOnClickListener { _ ->
-            listId?.let { viewModel.removeGroceryList(it) }
-            dialog?.dismiss()
+            share.setOnClickListener { _ ->
+                context?.let { context ->
+                    listId?.let { listId ->
+                        viewModel.shareGroceryList(context, listId)
+                    }
+                }
+                dialog?.dismiss()
+            }
+
+            remove.setOnClickListener { _ ->
+                listId?.let { viewModel.removeGroceryList(it) }
+                dialog?.dismiss()
+            }
         }
     }
 

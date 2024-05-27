@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import ru.virtual.core_android.ui.BaseFragment
 import ru.virtual.core_android.ui.SimpleTextWatcher
 import ru.virtual.core_android.ui.utils.addItemMargins
+import ru.virtual.core_android.ui.utils.setTextAndSelection
 import ru.virtual.core_db.DbModule
 import ru.virtual.core_navigation.R as navR
 import ru.virtual.feature_product_list.databinding.FragmentAddGroceryListBinding
@@ -38,28 +39,36 @@ class AddGroceryListFragment: BaseFragment<FragmentAddGroceryListBinding>(Fragme
     }
 
     override fun setUpViews(view: View) {
-        binding.addBtn.setOnClickListener{
-            viewModel.addGroceryList(binding.nameEdit.text.toString())
-            findNavController().navigate(navR.id.fragment_grocery_list)
-        }
+        setUpAdapter()
 
-        binding.nameEdit.addTextChangedListener(object : SimpleTextWatcher {
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                binding.addBtn.isEnabled = !s.isNullOrEmpty()
+        with(binding) {
+            addBtn.setOnClickListener {
+                viewModel.addGroceryList(nameEdit.text.toString())
+                findNavController().navigate(navR.id.fragment_grocery_list)
             }
-        })
 
-        binding.backBtn.setOnClickListener{ findNavController().navigateUp() }
+            nameEdit.addTextChangedListener(object : SimpleTextWatcher {
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    addBtn.isEnabled = !s.isNullOrEmpty()
+                }
+            })
 
-        binding.nameRecycler.also {
-            it.adapter = exampleNameAdapter
-            it.addItemMargins(0, 16)
+            backBtn.setOnClickListener { findNavController().navigateUp() }
+
+            nameRecycler.also {
+                it.adapter = exampleNameAdapter
+                it.addItemMargins(0, 16)
+            }
         }
+    }
 
-        exampleNameAdapter.addItems(exampleNames)
+    private fun setUpAdapter() {
+        with(exampleNameAdapter) {
+            addItems(exampleNames)
 
-        exampleNameAdapter.setOnItemClick { name ->
-            binding.nameEdit.setText(name)
+            setOnItemClick { name ->
+                binding.nameEdit.setTextAndSelection(name)
+            }
         }
     }
 

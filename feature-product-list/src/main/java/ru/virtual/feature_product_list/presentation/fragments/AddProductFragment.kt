@@ -11,8 +11,9 @@ import androidx.navigation.fragment.findNavController
 import ru.virtual.core_android.ui.BaseFragment
 import ru.virtual.core_android.ui.SimpleTextWatcher
 import ru.virtual.core_android.ui.utils.addItemMargins
+import ru.virtual.core_android.ui.utils.setTextAndSelection
 import ru.virtual.core_db.DbModule
-import ru.virtual.core_navigation.R
+import ru.virtual.core_navigation.R as navR
 import ru.virtual.feature_product_list.databinding.FragmentAddProductBinding
 import ru.virtual.feature_product_list.di.DaggerGroceryListComponent
 import ru.virtual.feature_product_list.di.GroceryListRepoModule
@@ -35,47 +36,46 @@ class AddProductFragment: BaseFragment<FragmentAddProductBinding>(FragmentAddPro
     @SuppressLint("SimpleDateFormat")
     private val exampleNames = listOf("Молоко", "Хлеб", "Картошка", "Свекла", "Сахар", "Соль", "Мороженое", "Морковь", "Сыр", "Творог")
 
-    private var listId: Int? = null
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         inject(context)
     }
 
-    override fun getStartData() {
-        listId = arguments?.getInt("listId")
+    override fun setUpViews(view: View) {
+        setUpAdapter()
+
+        with(binding) {
+            addBtn.setOnClickListener {
+                viewModel.addProduct(nameEdit.text.toString())
+            }
+
+            nameEdit.addTextChangedListener(object : SimpleTextWatcher {
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    addBtn.isEnabled = !s.isNullOrEmpty()
+                }
+            })
+
+            backBtn.setOnClickListener { findNavController().navigateUp() }
+
+            nameRecycler.also {
+                it.adapter = exampleNameAdapter
+                it.addItemMargins(0, 16)
+            }
+        }
     }
 
-    override fun setUpViews(view: View) {
-        binding.addBtn.setOnClickListener{
-            viewModel.addProduct(binding.nameEdit.text.toString())
-        }
+    private fun setUpAdapter() {
+        with(exampleNameAdapter) {
+            addItems(exampleNames)
 
-        binding.nameEdit.addTextChangedListener(object : SimpleTextWatcher {
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                binding.addBtn.isEnabled = !s.isNullOrEmpty()
+            setOnItemClick { name ->
+                binding.nameEdit.setTextAndSelection(name)
             }
-        })
-
-        binding.backBtn.setOnClickListener{ findNavController().navigateUp() }
-
-        binding.nameRecycler.also {
-            it.adapter = exampleNameAdapter
-            it.addItemMargins(0, 16)
-        }
-
-        exampleNameAdapter.addItems(exampleNames)
-
-        exampleNameAdapter.setOnItemClick { name ->
-            binding.nameEdit.setText(name)
         }
     }
 
     override fun setUpObservers() {
-        viewModel.addedProductId.observe(viewLifecycleOwner) { productId ->
-            listId?.let { viewModel.addGrocery(it, productId.toInt()) }
-            findNavController().navigate(R.id.fragment_groceries, bundleOf("listId" to listId))
-        }
+        viewModel.addedProductId.observe(viewLifecycleOwner) { findNavController().navigateUp() }
     }
 
     private fun inject(context: Context) = DaggerGroceryListComponent.builder()

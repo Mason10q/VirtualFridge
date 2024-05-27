@@ -33,13 +33,7 @@ class GroceryViewModel @Inject constructor(private val groceryUseCase: GroceryUs
         getAllGroceries(listId)
     }
 
-    suspend fun getListGroceriesIfNeeded(listId: Int) {
-        if (state.value is GroceryState.Ready) return
-
-        getListGroceries(listId)
-    }
-
-    suspend fun getAllGroceries(listId: Int) = groceryUseCase.getGroceries(listId)
+    private suspend fun getAllGroceries(listId: Int) = groceryUseCase.getGroceries(listId)
         .cachedIn(viewModelScope)
         .onStart { _state.postValue(GroceryState.Loading) }
         .collect { groceryLists ->
@@ -53,7 +47,7 @@ class GroceryViewModel @Inject constructor(private val groceryUseCase: GroceryUs
             _state.postValue(GroceryState.Ready(groceries))
         }
 
-    private suspend fun getListGroceries(listId: Int) = groceryUseCase.getListGroceries(listId)
+    suspend fun getListGroceries(listId: Int) = groceryUseCase.getListGroceries(listId)
         .cachedIn(viewModelScope)
         .onStart { _state.postValue(GroceryState.Loading) }
         .collect{ groceries ->
@@ -66,19 +60,17 @@ class GroceryViewModel @Inject constructor(private val groceryUseCase: GroceryUs
            _groceryList.postValue(groceryList)
         }, {})
 
-    fun incrementGroceryAmount(listId: Int, productId: Int) =
-        groceryUseCase.incrementGroceryAmount(listId, productId)
+    fun incrementGroceryAmount(listId: Int, grocery: Grocery) =
+        groceryUseCase.incrementGroceryAmount(listId, grocery)
             .subscribe()
 
-    fun decrementGroceryAmount(listId: Int, productId: Int) =
-        groceryUseCase.decrementGroceryAmount(listId, productId)
+    fun decrementGroceryAmount(listId: Int, grocery: Grocery) =
+        groceryUseCase.decrementGroceryAmount(listId, grocery)
             .subscribe()
 
-    fun markGrocery(listId: Int, productId: Int) = groceryUseCase.markGrocery(listId, productId)
-        .subscribe()
-
-    fun unMarkGrocery(listId: Int, productId: Int) = groceryUseCase.unMarkGrocery(listId, productId)
-        .subscribe()
+    fun setMarkState(listId: Int, productId: Int, state: Boolean) =
+        groceryUseCase.setMarkState(listId, productId, state)
+            .subscribe()
 
     fun addProduct(productName: String) =
         groceryUseCase.addProduct(productName)
@@ -87,11 +79,6 @@ class GroceryViewModel @Inject constructor(private val groceryUseCase: GroceryUs
                _addedProductId.postValue(id)
             }, {})
 
-    fun addGrocery(listId: Int, productId: Int) = groceryUseCase.addGrocery(listId, productId)
-        .subscribe()
-
-    fun removeGrocery(listId: Int, productId: Int) = groceryUseCase.removeGrocery(listId, productId)
-        .subscribe()
 
     sealed class GroceryState : State {
         data object Loading : GroceryState()

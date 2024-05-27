@@ -3,6 +3,7 @@ package ru.virtual.core_android.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -34,6 +35,14 @@ abstract class BasePagingAdapter<DATA : Any, VB : ViewBinding>(
 
     override fun onBindViewHolder(holder: ViewHolder<DATA, VB>, position: Int) {
         getItem(position)?.let { holder.bind(it, position) }
+    }
+
+    fun addEmptyLayout(layout: View) {
+        this.addLoadStateListener { loadState ->
+            if(loadState.prepend.endOfPaginationReached) {
+                layout.isVisible = this.itemCount < 1
+            }
+        }
     }
 
     class ViewHolder<DATA : Any, VB : ViewBinding>(

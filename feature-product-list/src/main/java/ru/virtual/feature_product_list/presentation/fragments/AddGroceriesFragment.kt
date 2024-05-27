@@ -61,59 +61,61 @@ class AddGroceriesFragment: StateFragment<FragmentAddGroceryBinding, GroceryView
 
     override fun setUpViews(view: View) {
         setUpEmptyLayout()
+        setUpAdapter()
 
-        binding.backBtn.setOnClickListener{ findNavController().navigateUp() }
+        with(binding) {
 
-        binding.groceryRecycler.also {
-            it.adapter = adapter.withLoadStateFooter(FooterLoadStateAdapter())
-            it.addItemMargins(26, 26)
-        }
+            backBtn.setOnClickListener { findNavController().navigateUp() }
 
-        binding.searchBar.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
+            groceryRecycler.also {
+                it.adapter = adapter.withLoadStateFooter(FooterLoadStateAdapter())
+                it.addItemMargins(26, 26)
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                handler.removeCallbacksAndMessages(null)
-
-                handler.postDelayed({
-                    lifecycleScope.launch {
-                        listId?.let {
-                            viewModel.searchGroceries(binding.searchBar.query.toString().trim(), it)
-                        }
-                    }
-                }, 1000)
-
-                return true
-            }
-        })
-
-        adapter.addLoadStateListener { loadState ->
-            if(loadState.prepend.endOfPaginationReached) {
-                if(adapter.itemCount < 1) {
-                    binding.emptyLayout.root.visibility = View.VISIBLE
-                } else {
-                    binding.emptyLayout.root.visibility = View.GONE
+            searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
                 }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    handler.removeCallbacksAndMessages(null)
+
+                    handler.postDelayed({
+                        lifecycleScope.launch {
+                            listId?.let {
+                                viewModel.searchGroceries(
+                                    searchBar.query.toString().trim(),
+                                    it
+                                )
+                            }
+                        }
+                    }, 1000)
+
+                    return true
+                }
+            })
+
+            addBtn.setOnClickListener {
+                findNavController().navigate(
+                    navR.id.fragment_add_product,
+                    bundleOf("listId" to listId)
+                )
+            }
+
+        }
+    }
+
+    private fun setUpAdapter() {
+        with(adapter) {
+            addEmptyLayout(binding.emptyLayout.root)
+
+            setOnAddGroceryListener { grocery ->
+                listId?.let { viewModel.incrementGroceryAmount(it, grocery) }
+            }
+            setOnGroceryReduceListener { grocery ->
+                listId?.let { viewModel.decrementGroceryAmount(it, grocery) }
             }
         }
-
-
-        adapter.setOnAddGroceryListener { productId, amount ->
-            listId?.let {
-                if (amount == 0) viewModel.addGrocery(it, productId)
-                else viewModel.incrementGroceryAmount(it, productId)
-            }
-        }
-        adapter.setOnGroceryReduceListener { productId, amount ->
-            listId?.let {
-                if(amount == 1) viewModel.removeGrocery(it, productId)
-                else viewModel.decrementGroceryAmount(it, productId)
-            }
-        }
-
-        binding.addBtn.setOnClickListener{ findNavController().navigate(navR.id.fragment_add_product, bundleOf("listId" to listId)) }
     }
 
     private fun setUpEmptyLayout() {

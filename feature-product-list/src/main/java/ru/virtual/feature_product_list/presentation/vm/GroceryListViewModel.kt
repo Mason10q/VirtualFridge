@@ -20,12 +20,6 @@ class GroceryListViewModel @Inject constructor(private val groceryListUseCase: G
     private val _groceryList = MutableLiveData<GroceryList>()
     val groceryList: LiveData<GroceryList> = _groceryList
 
-    suspend fun getGroceryListsIfNeeded() {
-        if (state.value is GroceryListState.Ready) return
-
-        getGroceryLists()
-    }
-
     suspend fun getGroceryLists() =
         groceryListUseCase.getGroceryLists()
             .cachedIn(viewModelScope)
