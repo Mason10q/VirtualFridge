@@ -52,6 +52,11 @@ class AuthViewModel @Inject constructor(
         }, {})
     )
 
+    fun sendFamilyInvite(email: String) = compositeDisposable.add(
+        authUseCase.sendFamilyInvite(email)
+            .subscribe({}, {})
+    )
+
     fun setOnTimerTick(listener: (Long) -> Unit) { onTick = listener }
 
     fun setOnTimerFinish(listener: () -> Unit) { onFinish = listener }

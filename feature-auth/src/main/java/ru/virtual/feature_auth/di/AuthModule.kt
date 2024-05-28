@@ -14,8 +14,6 @@ import ru.virtual.feature_auth.presentation.AuthViewModel
 @Module
 interface AuthModule {
 
-    @Binds
-    fun bindAuthRepository(repository: AuthRepositoryImpl): AuthRepository
 
     @Binds
     fun bindAuthUseCase(useCase: AuthUseCaseImpl): AuthUseCase

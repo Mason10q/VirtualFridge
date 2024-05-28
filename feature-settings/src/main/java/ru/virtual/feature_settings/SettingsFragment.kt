@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import ru.virtual.core_android.ui.BaseFragment
 import ru.virtual.feature_settings.databinding.FragmentSettingsBinding
@@ -31,6 +32,14 @@ class SettingsFragment: BaseFragment<FragmentSettingsBinding>(FragmentSettingsBi
             } else {
                 authBtn.text = context?.getString(R.string.screen_settings_auth)
                 authBtn.setOnClickListener{ findNavController().navigate(navR.id.nav_auth) }
+            }
+
+            binding.familyAccessBtn.setOnClickListener{
+                if(sp?.getInt("familyId", -1)?.let { it > 0 } == true) {
+                    findNavController().navigate(navR.id.fragment_family_access)
+                } else {
+                    Toast.makeText(context, "Сначала зарегестрируйтесь!", Toast.LENGTH_LONG).show()
+                }
             }
 
             aboutAppBtn.setOnClickListener{ findNavController().navigate(navR.id.fragment_about_app) }

@@ -9,4 +9,6 @@ interface AuthUseCase {
 
     fun checkCode(email: String, code: String): Single<Verified>
 
+    fun sendFamilyInvite(email: String): Completable
+
 }

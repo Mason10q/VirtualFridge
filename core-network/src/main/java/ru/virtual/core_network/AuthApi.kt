@@ -16,4 +16,7 @@ interface AuthApi {
     @POST("checkCode")
     fun checkCode(@Query("email") email: String, @Query("code") code: String): Single<VerifiedDto>
 
+
+    @POST("family/invite/send")
+    fun sendInvite(@Query("email") email: String, @Query("familyId") familyId: Int): Completable
 }

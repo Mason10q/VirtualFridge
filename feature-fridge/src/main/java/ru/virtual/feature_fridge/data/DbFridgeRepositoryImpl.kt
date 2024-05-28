@@ -15,7 +15,7 @@ class DbFridgeRepositoryImpl @Inject constructor(
 ) : FridgeRepository {
 
     override fun getFridgeProducts(pageNum: Int): Single<List<Product>> =
-        dao.getFridgeProducts()
+        dao.getFridgeProducts(pageNum)
             .subscribeOn(Schedulers.io())
             .map(productMapper::map)
 

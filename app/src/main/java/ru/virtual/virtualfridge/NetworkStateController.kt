@@ -34,6 +34,8 @@ class NetworkStateController(private val context: Context) {
         sp.registerOnSharedPreferenceChangeListener{ sp, key ->
             if(checkIfLoggedIn()) {
                 sp.edit().putBoolean("online", NetworkUtil(context).isInternetAvailable()).apply()
+            } else {
+                sp.edit().putBoolean("online", false).apply()
             }
         }
     }

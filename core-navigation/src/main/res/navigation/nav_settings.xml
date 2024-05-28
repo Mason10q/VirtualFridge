@@ -10,6 +10,9 @@
         <action
             android:id="@+id/action_fragment_settings_to_fragment_about_app"
             app:destination="@id/fragment_about_app" />
+        <action
+            android:id="@+id/action_fragment_settings_to_fragment_family_access"
+            app:destination="@id/fragment_family_access" />
     </fragment>
 
     <fragment
@@ -19,6 +22,10 @@
             android:id="@+id/action_fragment_about_app_to_fragment_settings"
             app:destination="@id/fragment_settings" />
     </fragment>
+
+    <fragment
+        android:id="@+id/fragment_family_access"
+        android:name="ru.virtual.feature_auth.presentation.FamilyAccessFragment"/>
 
     <include app:graph="@navigation/nav_auth"/>
 

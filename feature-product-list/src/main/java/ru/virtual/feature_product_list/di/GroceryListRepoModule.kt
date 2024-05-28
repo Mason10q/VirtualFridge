@@ -4,6 +4,7 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import ru.virtual.core_android.Mapper
+import ru.virtual.core_db.FridgeDao
 import ru.virtual.core_db.GroceryListDao
 import ru.virtual.core_db.tables.GroceryListAmounts
 import ru.virtual.core_db.tables.GroceryListTable
@@ -13,6 +14,8 @@ import ru.virtual.core_network.NetworkUtil
 import ru.virtual.core_network.dto.GroceryDto
 import ru.virtual.core_network.dto.GroceryListDto
 import ru.virtual.feature_product_list.data.DbGroceryListRepo
+import ru.virtual.feature_product_list.data.FridgeRepository
+import ru.virtual.feature_product_list.data.FridgeRepositoryImpl
 import ru.virtual.feature_product_list.data.GroceryListRepo
 import ru.virtual.feature_product_list.data.NetworkGroceryListRepo
 import ru.virtual.feature_product_list.domain.entities.Grocery
@@ -39,5 +42,8 @@ class GroceryListRepoModule(private val context: Context) {
             DbGroceryListRepo(dao, groceryListTableMapper, groceryTableMapper)
         }
     }
+
+    @Provides
+    fun provideFridgeRepository(dao: FridgeDao): FridgeRepository = FridgeRepositoryImpl(dao)
 
 }

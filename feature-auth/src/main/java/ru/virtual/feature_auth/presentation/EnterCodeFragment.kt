@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import ru.virtual.core_android.toTimeFormat
 import ru.virtual.core_android.ui.BaseFragment
+import ru.virtual.feature_auth.di.AuthModule
+import ru.virtual.feature_auth.di.AuthRepositoryModule
 import ru.virtual.feature_auth.di.DaggerAuthComponent
 import ru.virtual.mylibrary.R
 import ru.virtual.mylibrary.databinding.FragmentEnterAuthCodeBinding
@@ -32,7 +34,7 @@ class EnterCodeFragment :
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        inject()
+        inject(context)
         sp = context.getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
     }
 
@@ -102,7 +104,8 @@ class EnterCodeFragment :
         }
     }
 
-    private fun inject() = DaggerAuthComponent.builder()
+    private fun inject(context: Context) = DaggerAuthComponent.builder()
+        .authRepoModule(AuthRepositoryModule(context))
         .build()
         .inject(this)
 }

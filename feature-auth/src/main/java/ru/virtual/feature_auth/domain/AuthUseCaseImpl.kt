@@ -16,4 +16,7 @@ class AuthUseCaseImpl @Inject constructor(
         .map { Verified(it.isVerified ?: false, it.familyId ?: -1) }
         .observeOn(AndroidSchedulers.mainThread())
 
+    override fun sendFamilyInvite(email: String): Completable = repository.sendFamilyInvite(email)
+        .observeOn(AndroidSchedulers.mainThread())
+
 }

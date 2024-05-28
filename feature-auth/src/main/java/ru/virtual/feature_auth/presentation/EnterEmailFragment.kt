@@ -11,6 +11,7 @@ import ru.virtual.core_android.ui.BaseFragment
 import javax.inject.Inject
 import ru.virtual.core_navigation.R as navR
 import ru.virtual.core_android.addTextChangedListener
+import ru.virtual.feature_auth.di.AuthRepositoryModule
 import ru.virtual.feature_auth.di.DaggerAuthComponent
 import ru.virtual.mylibrary.R
 import ru.virtual.mylibrary.databinding.FragmentEnterEmailBinding
@@ -25,7 +26,7 @@ class EnterEmailFragment :
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        inject()
+        inject(context)
     }
 
     override fun setUpViews(view: View) {
@@ -48,7 +49,8 @@ class EnterEmailFragment :
         }
     }
 
-    private fun inject() = DaggerAuthComponent.builder()
+    private fun inject(context: Context) = DaggerAuthComponent.builder()
+        .authRepoModule(AuthRepositoryModule(context))
         .build()
         .inject(this)
 

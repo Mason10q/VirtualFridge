@@ -58,7 +58,6 @@
     </style>
 
     <style name="EditText" parent="MatchParentWrapContent">
-        <item name="android:layout_marginHorizontal">?attr/primary_margin_horizontal</item>
         <item name="android:editTextColor">?attr/text_primary</item>
         <item name="android:textColorHint">?attr/text_primary</item>
         <item name="android:background">@drawable/background_edittext</item>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchParent"
+    android:paddingHorizontal="?attr/primary_margin_horizontal">
+
+    <include
+        layout="@layout/layout_back_button_header"
+        android:id="@+id/header"
+        style="@style/MatchParentWrapContent"
+        android:text="@string/screen_enter_code_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title_hint"
+        style="@style/Text.H4.Regular"
+        android:text="@string/screen_family_access_title_hint"
+        app:layout_constraintBottom_toTopOf="@id/empty_spaces"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
+    <TextView
+        android:id="@+id/empty_spaces"
+        style="@style/Text.H4.Medium"
+        android:gravity="center"
+        android:text="@string/screen_family_acess_empty_spaces"
+        app:layout_constraintBottom_toTopOf="@id/space_recycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_hint"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/space_recycler"
+        style="@style/MatchParentWrapContent"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/enter_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/empty_spaces" />
+
+
+    <TextView
+        android:id="@+id/enter_hint"
+        style="@style/Text.H4.Regular"
+        android:text="@string/screen_family_access_enter_hint"
+        app:layout_constraintBottom_toTopOf="@id/email_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/space_recycler" />
+
+    <EditText
+        android:id="@+id/email_edit"
+        style="@style/EditText"
+        android:hint="@string/screen_family_access_email_hint"
+        app:layout_constraintBottom_toTopOf="@id/send_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/enter_hint" />
+
+    <Button
+        android:id="@+id/send_btn"
+        style="@style/Button.Active"
+        android:enabled="false"
+        android:text="@string/screen_family_access_send"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/email_edit" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

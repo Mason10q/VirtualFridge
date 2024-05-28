@@ -10,4 +10,6 @@ interface AuthRepository {
 
     fun checkCode(email: String, code: String): Single<VerifiedDto>
 
+    fun sendFamilyInvite(email: String): Completable
+
 }
