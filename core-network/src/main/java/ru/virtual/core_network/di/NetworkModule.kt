@@ -4,16 +4,14 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit.Builder
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.virtual.core_network.AuthApi
 import ru.virtual.core_network.BuildConfig
-import ru.virtual.core_network.FridgeService
+import ru.virtual.core_network.FridgeApi
 import ru.virtual.core_network.GroceryListApi
 import ru.virtual.core_network.retrofit.buildApi
 import java.util.concurrent.TimeUnit
@@ -51,7 +49,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideFridgeApi(builder: Builder) = builder.buildApi<FridgeService>()
+    fun provideFridgeApi(builder: Builder) = builder.buildApi<FridgeApi>()
 
 
     @Singleton

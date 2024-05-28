@@ -70,7 +70,9 @@ class GroceryViewModel @Inject constructor(private val groceryUseCase: GroceryUs
 
     fun setMarkState(listId: Int, productId: Int, state: Boolean) =
         groceryUseCase.setMarkState(listId, productId, state)
-            .subscribe()
+            .subscribe({}, {
+                Log.d("asd", it.message.toString())
+            })
 
     fun addProduct(productName: String) =
         groceryUseCase.addProduct(productName)

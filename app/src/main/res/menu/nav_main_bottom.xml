@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/fragment_fridge"
+        android:id="@+id/nav_fridge"
         android:title="@string/bottom_nav_fridge"
         android:icon="@drawable/ic_fridge"/>
 

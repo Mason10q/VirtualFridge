@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchParent"
+    android:background="@drawable/background_recipe_card">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/MatchParent">
+
+        <ImageView
+            android:id="@+id/recipe_image"
+            style="@style/MatchParentWrapContent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/recipe_name" />
+
+        <TextView
+            android:id="@+id/recipe_name"
+            style="@style/Text.H5.Medium"
+            android:layout_marginHorizontal="12dp"
+            android:text="Запеканка с мясом"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recipe_image"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <LinearLayout
+            android:id="@+id/recipe_calories"
+            style="@style/MatchParentWrapContent"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recipe_name"
+            app:layout_constraintBottom_toTopOf="@id/recipe_time">
+
+            <ImageView
+                style="@style/WrapContent"
+                android:src="@drawable/ic_fire"/>
+
+            <TextView
+                style="@style/Text.H6.Regular"
+                android:layout_marginLeft="8dp"
+
+                android:text="184 ккал"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/recipe_time"
+            style="@style/MatchParentWrapContent"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recipe_calories"
+            app:layout_constraintBottom_toTopOf="@id/recipe_category">
+
+            <ImageView
+                style="@style/WrapContent"
+                android:src="@drawable/ic_clock"/>
+
+            <TextView
+                style="@style/Text.H6.Regular"
+                android:layout_marginLeft="8dp"
+                android:text="50 минут" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/recipe_category"
+            style="@style/MatchParentWrapContent"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recipe_time">
+
+            <ImageView
+                style="@style/WrapContent"
+                android:src="@drawable/ic_cap"/>
+
+            <TextView
+                style="@style/Text.H6.Regular"
+                android:layout_marginLeft="8dp"
+                android:text="Легко" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

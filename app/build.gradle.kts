@@ -51,6 +51,7 @@ dependencies {
     implementation(project(":feature-product-list"))
     implementation(project(":feature-auth"))
     implementation(project(":feature-settings"))
+    implementation(project(":feature-fridge"))
 
     implementation(Libs.AndroidX.core)
     implementation(Libs.AndroidX.appCompat)

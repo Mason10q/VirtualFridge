@@ -10,5 +10,5 @@ data class GroceryDto(
     @SerializedName("amount")
     val amount: Int?,
     @SerializedName("marked")
-    val marked: Boolean?
+    val marked: Int?
 )

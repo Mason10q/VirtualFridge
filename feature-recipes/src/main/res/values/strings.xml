@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="screen_recipes_search_hint">Поиск</string>
+    <string name="header_all">все</string>
+    <string name="screen_recipe_ingredients">Ингредиенты</string>
+    <string name="screen_recipe_cook">Приготовить</string>
+    
+</resources>

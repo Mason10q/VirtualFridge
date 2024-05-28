@@ -60,7 +60,13 @@ interface GroceryListApi {
     ): Single<List<GroceryDto>>
 
     @POST("grocery/mark")
-    fun setMarkState(@Query("listId") listId: Int, @Query("productId") productId: Int, @Query("state") state: Boolean): Completable
+    fun markGrocery(@Query("listId") listId: Int, @Query("productId") productId: Int): Completable
+
+
+    @POST("grocery/unmark")
+    fun unMarkGrocery(@Query("listId") listId: Int, @Query("productId") productId: Int): Completable
+
+
 
     companion object {
         const val DEFAULT_PAGE_SIZE = 10

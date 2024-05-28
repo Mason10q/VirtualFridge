@@ -8,6 +8,6 @@ import javax.inject.Inject
 class GroceryDtoMapper @Inject constructor(): Mapper<Grocery, GroceryDto> {
 
     override fun map(item: GroceryDto): Grocery = Grocery(
-        item.productId ?: 0, item.name ?: "", item.amount ?: 0, item.marked ?: false
+        item.productId ?: 0, item.name ?: "", item.amount ?: 0, (item.marked == 1)
     )
 }

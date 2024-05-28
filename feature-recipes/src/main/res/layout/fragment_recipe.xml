@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchParent">
+
+    <LinearLayout
+        style="@style/MatchParent"
+        android:orientation="vertical"
+        android:padding="?attr/primary_margin_horizontal">
+
+        <ImageView
+            android:id="@+id/recipe_image"
+            style="@style/MatchParentWrapContent"/>
+
+        <LinearLayout
+            style="@style/MatchParentWrapContent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                style="@style/WrapContent"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:gravity="center"
+                android:layout_weight="1">
+
+                <ImageView
+                    style="@style/WrapContent"
+                    android:src="@drawable/ic_fire"/>
+
+                <TextView
+                    android:id="@+id/recipe_calories"
+                    style="@style/Text.H5.Regular"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="326 ккал"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/WrapContent"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:gravity="center"
+                android:layout_weight="1">
+
+                <ImageView
+                    style="@style/WrapContent"
+                    android:src="@drawable/ic_clock"/>
+
+                <TextView
+                    android:id="@+id/recipe_time"
+                    style="@style/Text.H5.Regular"
+                    android:gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:text="100 минут"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/WrapContent"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:gravity="center"
+                android:layout_weight="1">
+
+                <ImageView
+                    style="@style/WrapContent"
+                    android:src="@drawable/ic_cap"/>
+
+                <TextView
+                    android:id="@+id/recipe_category"
+                    style="@style/Text.H5.Regular"
+                    android:gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:text="Сложно"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/recipe_name"
+            style="@style/Text.H2.ScreenTitle"
+            android:text="Оладьи"/>
+
+        <TextView
+            android:id="@+id/recipe_description"
+            style="@style/Text.H6.Regular"
+            android:text="Вам лень готовить завтрак по утрам? Мы знаем насколько ценна каждая минутка сна по утрам. "/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/category_recycler"
+            style="@style/MatchParentWrapContent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal" />
+
+        <TextView
+            style="@style/Text.H3"
+            android:text="@string/screen_recipe_ingredients"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ingredients_recycler"
+            style="@style/MatchParentWrapContent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:nestedScrollingEnabled="false" />
+
+        <Button
+            android:id="@+id/cook_btn"
+            style="@style/Button.Active"
+            android:text="@string/screen_recipe_cook"/>
+
+    </LinearLayout>
+
+</ScrollView>

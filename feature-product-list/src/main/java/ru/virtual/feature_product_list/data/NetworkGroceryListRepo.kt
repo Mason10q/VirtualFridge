@@ -62,9 +62,10 @@ class NetworkGroceryListRepo @Inject constructor(
             .subscribeOn(Schedulers.io())
             .map(groceryMapper::map)
 
-    override fun setMarkState(listId: Int, productId: Int, state: Boolean): Completable =
-        api.setMarkState(listId, productId, state)
-            .subscribeOn(Schedulers.io())
+    override fun setMarkState(listId: Int, productId: Int, state: Boolean): Completable {
+        return if(state) api.markGrocery(listId, productId)
+        else api.unMarkGrocery(listId, productId)
+    }
 
     override fun addProduct(productName: String): Single<Long> = Single.never()
 }

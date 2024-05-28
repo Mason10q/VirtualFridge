@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="screen_fridge_title">Мой холодильник</string>
+    <string name="screen_fridge_empty_list_text">Ваш холодильник пустует!</string>
+    <string name="screen_fridge_empty_list_description">Вы можете добавить продукты в разделе \"список проудктов\"</string>
+</resources>

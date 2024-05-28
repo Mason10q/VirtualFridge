@@ -23,4 +23,7 @@ class DbModule(private val context: Context) {
     @Provides
     fun provideGroceryListDao(dataBase: FridgeDataBase) = dataBase.getGroceryListDao()
 
+    @Provides
+    fun provideFridgeDao(dataBase: FridgeDataBase) = dataBase.getFridgeDao()
+
 }
