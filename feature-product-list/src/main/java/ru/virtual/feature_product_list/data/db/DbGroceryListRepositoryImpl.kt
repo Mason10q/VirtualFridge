@@ -1,4 +1,4 @@
-package ru.virtual.feature_product_list.data
+package ru.virtual.feature_product_list.data.db
 
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
@@ -10,15 +10,16 @@ import ru.virtual.core_db.tables.GroceryListTable
 import ru.virtual.core_db.tables.GroceryProduct
 import ru.virtual.core_db.tables.GroceryTable
 import ru.virtual.core_db.tables.ProductTable
+import ru.virtual.feature_product_list.data.GroceryListRepository
 import ru.virtual.feature_product_list.domain.entities.Grocery
 import ru.virtual.feature_product_list.domain.entities.GroceryList
 import javax.inject.Inject
 
-class DbGroceryListRepo @Inject constructor(
+class DbGroceryListRepositoryImpl @Inject constructor(
     private val dao: GroceryListDao,
     private val groceryListMapper: Mapper<GroceryList, GroceryListAmounts>,
     private val groceryMapper: Mapper<Grocery, GroceryProduct>
-): GroceryListRepo {
+): GroceryListRepository {
 
     override fun getGroceryListById(listId: Int): Single<GroceryList> = dao.getGroceryListById(listId)
         .subscribeOn(Schedulers.io())

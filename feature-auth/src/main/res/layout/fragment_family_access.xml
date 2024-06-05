@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/MatchParent"
-    android:paddingHorizontal="?attr/primary_margin_horizontal">
+    style="@style/MatchParent">
 
     <include
         layout="@layout/layout_back_button_header"
@@ -16,6 +15,7 @@
     <TextView
         android:id="@+id/title_hint"
         style="@style/Text.H4.Regular"
+        android:layout_marginHorizontal="?attr/primary_margin_horizontal"
         android:text="@string/screen_family_access_title_hint"
         app:layout_constraintBottom_toTopOf="@id/empty_spaces"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,6 +46,7 @@
     <TextView
         android:id="@+id/enter_hint"
         style="@style/Text.H4.Regular"
+        android:layout_marginHorizontal="?attr/primary_margin_horizontal"
         android:text="@string/screen_family_access_enter_hint"
         app:layout_constraintBottom_toTopOf="@id/email_edit"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,6 +57,7 @@
         android:id="@+id/email_edit"
         style="@style/EditText"
         android:hint="@string/screen_family_access_email_hint"
+        android:layout_marginHorizontal="?attr/primary_margin_horizontal"
         app:layout_constraintBottom_toTopOf="@id/send_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,6 +67,7 @@
         android:id="@+id/send_btn"
         style="@style/Button.Active"
         android:enabled="false"
+        android:layout_marginHorizontal="?attr/primary_margin_horizontal"
         android:text="@string/screen_family_access_send"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

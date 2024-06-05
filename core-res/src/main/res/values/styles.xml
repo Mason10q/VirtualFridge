@@ -59,6 +59,7 @@
 
     <style name="EditText" parent="MatchParentWrapContent">
         <item name="android:editTextColor">?attr/text_primary</item>
+        <item name="android:layout_marginHorizontal">?attr/primary_margin_horizontal</item>
         <item name="android:textColorHint">?attr/text_primary</item>
         <item name="android:background">@drawable/background_edittext</item>
         <item name="android:textColor">?attr/text_primary</item>
@@ -66,7 +67,9 @@
 
 
 
-    <style name="Button" parent="MatchParentWrapContent" />
+    <style name="Button" parent="MatchParentWrapContent">
+        <item name="android:layout_marginHorizontal">?attr/primary_margin_horizontal</item>
+    </style>
 
     <style name="Button.Active">
         <item name="android:background">@drawable/background_active_button</item>

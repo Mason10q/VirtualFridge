@@ -54,6 +54,11 @@
         <item name="android:fontFamily">@font/poppins_medium</item>
     </style>
 
+    <style name="Text.H5.Hint">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">?attr/text_secondary</item>
+    </style>
+
     <style name="Text.H6">
         <item name="android:textSize">?attr/h6_text_size</item>
     </style>

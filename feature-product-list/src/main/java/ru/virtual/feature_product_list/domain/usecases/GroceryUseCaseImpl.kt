@@ -7,19 +7,19 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.flow.Flow
 import ru.virtual.feature_product_list.data.FridgeRepository
-import ru.virtual.feature_product_list.data.GroceryListRepo
+import ru.virtual.feature_product_list.data.GroceryListRepository
 import ru.virtual.feature_product_list.data.paging.GroceryPagingSource
 import ru.virtual.feature_product_list.data.paging.GrocerySearchPagingSource
 import ru.virtual.feature_product_list.domain.entities.Grocery
 import javax.inject.Inject
 
 class GroceryUseCaseImpl @Inject constructor(
-    private val repository: GroceryListRepo,
+    private val repository: GroceryListRepository,
     private val fridgeRepository: FridgeRepository
 ) : GroceryUseCase {
 
     override fun getGroceries(listId: Int): Flow<PagingData<Grocery>> =
-        Pager(GroceryListRepo.pagerConfig, initialKey = 1,
+        Pager(GroceryListRepository.pagerConfig, initialKey = 1,
             pagingSourceFactory = { GrocerySearchPagingSource(repository, listId, "") }).flow
 
     override fun removeGrocery(listId: Int, productId: Int): Completable =
@@ -27,7 +27,7 @@ class GroceryUseCaseImpl @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
 
     override fun searchProducts(query: String, listId: Int): Flow<PagingData<Grocery>> =
-        Pager(GroceryListRepo.pagerConfig, initialKey = 1,
+        Pager(GroceryListRepository.pagerConfig, initialKey = 1,
             pagingSourceFactory = { GrocerySearchPagingSource(repository, listId, query) }).flow
 
     override fun incrementGroceryAmount(listId: Int, grocery: Grocery): Completable =
@@ -41,7 +41,7 @@ class GroceryUseCaseImpl @Inject constructor(
 
 
     override fun getListGroceries(listId: Int): Flow<PagingData<Grocery>> =
-        Pager(GroceryListRepo.pagerConfig, initialKey = 1,
+        Pager(GroceryListRepository.pagerConfig, initialKey = 1,
             pagingSourceFactory = { GroceryPagingSource(repository, listId) }).flow
 
     override fun decrementGroceryAmount(listId: Int, grocery: Grocery): Completable =

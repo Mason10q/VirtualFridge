@@ -20,8 +20,11 @@ interface FridgeApi {
     ): Single<List<FridgeProductDto>>
 
     @POST("product/remove")
-    fun removeProductFromFridge(@Query("fridge_id") fridgeId: Int, @Query("product_id") productId: Int): Completable
+    fun removeProductFromFridge(@Query("family_id") fridgeId: Int, @Query("product_id") productId: Int): Completable
 
+
+    @POST("product/add")
+    fun addProductToFridge(@Query("family_id") fridgeId: Int, @Query("product_id") productId: Int): Completable
 
     companion object {
         const val DEFAULT_PAGE_SIZE = 10

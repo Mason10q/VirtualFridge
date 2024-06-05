@@ -2,23 +2,22 @@ package ru.virtual.feature_product_list
 
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.schedulers.Schedulers
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
-import ru.virtual.feature_product_list.data.GroceryListRepo
+import ru.virtual.feature_product_list.data.GroceryListRepository
 import ru.virtual.feature_product_list.domain.entities.Grocery
 import ru.virtual.feature_product_list.domain.entities.GroceryList
 
 class GroceryListAmountsRepoTest {
 
-    private lateinit var groceryListRepo: GroceryListRepo
+    private lateinit var groceryListRepository: GroceryListRepository
 
     @Before
     fun setup() {
         MockitoAnnotations.openMocks(this)
-        groceryListRepo = Mockito.mock(GroceryListRepo::class.java)
+        groceryListRepository = Mockito.mock(GroceryListRepository::class.java)
     }
 
     @Test
@@ -26,10 +25,10 @@ class GroceryListAmountsRepoTest {
         val listId = 1
         val expectedGroceryList = GroceryList(listId, "Test List", 1, 1)
 
-        Mockito.`when`(groceryListRepo.getGroceryListById(listId))
+        Mockito.`when`(groceryListRepository.getGroceryListById(listId))
             .thenReturn(Single.just(expectedGroceryList))
 
-        groceryListRepo.getGroceryListById(listId)
+        groceryListRepository.getGroceryListById(listId)
             .test()
             .assertValue(expectedGroceryList)
     }
@@ -38,10 +37,10 @@ class GroceryListAmountsRepoTest {
     fun `addGroceryList completes successfully`() {
         val listName = "New List"
 
-        Mockito.`when`(groceryListRepo.addGroceryList(listName))
+        Mockito.`when`(groceryListRepository.addGroceryList(listName))
             .thenReturn(Completable.complete())
 
-        groceryListRepo.addGroceryList(listName)
+        groceryListRepository.addGroceryList(listName)
             .test()
             .assertComplete()
     }
@@ -52,10 +51,10 @@ class GroceryListAmountsRepoTest {
         val pageNum = 1
         val expectedGroceries = listOf(Grocery(1, "Apple", 1, false), Grocery(2, "Banana", 1, true))
 
-        Mockito.`when`(groceryListRepo.getGroceriesFromList(listId, pageNum))
+        Mockito.`when`(groceryListRepository.getGroceriesFromList(listId, pageNum))
             .thenReturn(Single.just(expectedGroceries))
 
-        groceryListRepo.getGroceriesFromList(listId, pageNum)
+        groceryListRepository.getGroceriesFromList(listId, pageNum)
             .test()
             .assertValue(expectedGroceries)
     }
@@ -64,10 +63,10 @@ class GroceryListAmountsRepoTest {
     fun `removeGroceryList completes successfully`() {
         val listId = 1
 
-        Mockito.`when`(groceryListRepo.removeGroceryList(listId))
+        Mockito.`when`(groceryListRepository.removeGroceryList(listId))
             .thenReturn(Completable.complete())
 
-        groceryListRepo.removeGroceryList(listId)
+        groceryListRepository.removeGroceryList(listId)
             .test()
             .assertComplete()
     }
@@ -79,10 +78,10 @@ class GroceryListAmountsRepoTest {
         val listId = 1
         val expectedGroceries = listOf(Grocery(1, "Apple", 1, true))
 
-        Mockito.`when`(groceryListRepo.searchProduct(query, listId, pageNum))
+        Mockito.`when`(groceryListRepository.searchProduct(query, listId, pageNum))
             .thenReturn(Single.just(expectedGroceries))
 
-        groceryListRepo.searchProduct(query, listId, pageNum)
+        groceryListRepository.searchProduct(query, listId, pageNum)
             .test()
             .assertValue(expectedGroceries)
     }

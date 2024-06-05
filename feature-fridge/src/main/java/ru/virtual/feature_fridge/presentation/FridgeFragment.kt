@@ -1,6 +1,7 @@
 package ru.virtual.feature_fridge.presentation
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -35,6 +36,7 @@ class FridgeFragment: StateFragment<FragmentFridgeBinding, FridgeViewModel>(Frag
     override fun onAttach(context: Context) {
         super.onAttach(context)
         inject(context)
+        Log.d("asd", "onAttach")
     }
 
     override fun getStartData() {

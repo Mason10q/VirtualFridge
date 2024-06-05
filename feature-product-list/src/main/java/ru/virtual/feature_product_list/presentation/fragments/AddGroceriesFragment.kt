@@ -1,6 +1,7 @@
 package ru.virtual.feature_product_list.presentation.fragments
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -36,6 +37,8 @@ class AddGroceriesFragment: StateFragment<FragmentAddGroceryBinding, GroceryView
 
     private val handler = Handler(Looper.getMainLooper())
 
+    private var sp: SharedPreferences? = null
+
     override val stateMachine = StateMachine.Builder()
         .lifecycleOwner(this)
         .addLoadingState()
@@ -49,6 +52,7 @@ class AddGroceriesFragment: StateFragment<FragmentAddGroceryBinding, GroceryView
     override fun onAttach(context: Context) {
         super.onAttach(context)
         inject(context)
+        sp = context.getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
     }
 
     override fun getStartData() {
@@ -73,9 +77,7 @@ class AddGroceriesFragment: StateFragment<FragmentAddGroceryBinding, GroceryView
             }
 
             searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    return false
-                }
+                override fun onQueryTextSubmit(query: String?): Boolean = false
 
                 override fun onQueryTextChange(newText: String?): Boolean {
                     handler.removeCallbacksAndMessages(null)
@@ -102,6 +104,7 @@ class AddGroceriesFragment: StateFragment<FragmentAddGroceryBinding, GroceryView
                 )
             }
 
+            addBtn.isVisible = !(sp?.getBoolean("online", false) ?: false)
         }
     }
 

@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.viewModels
@@ -36,6 +37,7 @@ class EnterCodeFragment :
         super.onAttach(context)
         inject(context)
         sp = context.getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
     }
 
     override fun getStartData() {

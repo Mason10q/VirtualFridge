@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.core.Single
 import ru.virtual.feature_product_list.domain.entities.Grocery
 import ru.virtual.feature_product_list.domain.entities.GroceryList
 
-interface GroceryListRepo {
+interface GroceryListRepository {
 
     fun getGroceryListById(listId: Int): Single<GroceryList>
 

@@ -54,7 +54,7 @@ interface GroceryListApi {
     @GET("grocery/search")
     fun searchProduct(
         @Query("query") query: String,
-        @Query("list_id") listId: Int,
+        @Query("listId") listId: Int,
         @Query("page") @IntRange(from = 1) page: Int = 1,
         @Query("limit") @IntRange(from = 1, to = MAX_PAGE_SIZE.toLong()) pageSize: Int = DEFAULT_PAGE_SIZE
     ): Single<List<GroceryDto>>

@@ -2,6 +2,7 @@ package ru.virtual.feature_auth.presentation
 
 import android.content.Context
 import android.view.View
+import android.view.WindowManager
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -27,6 +28,7 @@ class EnterEmailFragment :
     override fun onAttach(context: Context) {
         super.onAttach(context)
         inject(context)
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
     }
 
     override fun setUpViews(view: View) {

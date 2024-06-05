@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        networkStateController.setOnlineState(networkStateController.checkIfOnline())
+
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_container) as NavHostFragment
         navController = navHostFragment.navController
 

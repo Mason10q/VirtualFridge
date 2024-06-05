@@ -9,6 +9,7 @@ import ru.virtual.core_navigation.R as navR
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.virtual.core_android.states.StateMachine
 import ru.virtual.core_android.ui.FooterLoadStateAdapter
@@ -54,6 +55,12 @@ class GroceryListFragment: StateFragment<FragmentGroceryListBinding, GroceryList
             }
 
             addBtn.setOnClickListener { findNavController().navigate(navR.id.fragment_add_grocery_list) }
+        }
+    }
+
+    override fun refreshData() {
+        lifecycleScope.launch {
+            viewModel.getGroceryLists()
         }
     }
 

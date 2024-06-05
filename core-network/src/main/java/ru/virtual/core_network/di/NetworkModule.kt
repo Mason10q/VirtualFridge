@@ -9,6 +9,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit.Builder
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.virtual.core_network.AlwaysRetryInterceptor
 import ru.virtual.core_network.AuthApi
 import ru.virtual.core_network.BuildConfig
 import ru.virtual.core_network.FridgeApi
@@ -31,12 +32,12 @@ class NetworkModule {
         .addNetworkInterceptor { chain ->
             chain.proceed(
                 chain.request().newBuilder()
-                    .header("X-API-KEY", BuildConfig.API_KEY)
                     .header("accept", "application/json")
                     .build()
             )
         }
-        .readTimeout(100, TimeUnit.SECONDS)
+        .addInterceptor(AlwaysRetryInterceptor(5))
+        .retryOnConnectionFailure(true)
         .build()
 
     @Singleton

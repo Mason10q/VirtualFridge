@@ -1,4 +1,4 @@
-package ru.virtual.feature_product_list.data
+package ru.virtual.feature_product_list.data.network
 
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
@@ -7,16 +7,17 @@ import ru.virtual.core_android.Mapper
 import ru.virtual.core_network.GroceryListApi
 import ru.virtual.core_network.dto.GroceryDto
 import ru.virtual.core_network.dto.GroceryListDto
+import ru.virtual.feature_product_list.data.GroceryListRepository
 import ru.virtual.feature_product_list.domain.entities.Grocery
 import ru.virtual.feature_product_list.domain.entities.GroceryList
 import javax.inject.Inject
 
-class NetworkGroceryListRepo @Inject constructor(
+class NetworkGroceryListRepositoryImpl @Inject constructor(
     private val api: GroceryListApi,
     private val groceryListMapper: Mapper<GroceryList, GroceryListDto>,
     private val groceryMapper: Mapper<Grocery, GroceryDto>,
     private val familyId: Int
-) : GroceryListRepo {
+) : GroceryListRepository {
 
     override fun getGroceryListById(listId: Int): Single<GroceryList> = api.getGroceryListById(listId)
         .subscribeOn(Schedulers.io())
