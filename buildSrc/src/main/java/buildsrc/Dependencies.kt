@@ -47,6 +47,8 @@ object Versions {
         const val carousel = "1.0.4"
         const val roundedProgressBar="3.0.0"
         const val codeEditText = "1.2.0"
+        const val animatedThemeManager = "1.1.4"
+        const val swipeRefreshLayout = "1.2.0-alpha01"
     }
 
     object Test {
@@ -94,6 +96,8 @@ object Libs {
     object DI {
         const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
         const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+        const val daggerAndroid = "com.google.dagger:dagger-android:${Versions.dagger}"
+        const val daggerAndroidProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
     }
 
     object RxJava {
@@ -107,6 +111,8 @@ object Libs {
         const val carousel = "com.github.akshaaatt:Sliding-Carousel:${Versions.UI.carousel}"
         const val roundedProgressBar = "com.github.MackHartley:RoundedProgressBar:${Versions.UI.roundedProgressBar}"
         const val codeEditText = "com.github.jakode2020:VerifyCodeEditText:${Versions.UI.codeEditText}"
+        const val animatedThemeManager = "com.dolatkia:animated-theme-manager:${Versions.UI.animatedThemeManager}"
+        const val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.UI.swipeRefreshLayout}"
     }
 
     object Test {

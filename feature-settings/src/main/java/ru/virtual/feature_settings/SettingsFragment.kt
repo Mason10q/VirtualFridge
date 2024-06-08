@@ -2,7 +2,6 @@ package ru.virtual.feature_settings
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -20,22 +19,31 @@ class SettingsFragment: BaseFragment<FragmentSettingsBinding>(FragmentSettingsBi
         sp = context.getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
     }
     override fun setUpViews(view: View) {
+        val isConnected = sp?.getBoolean("connected", false)
+        val isLoggedIn = sp?.getInt("familyId", -1)?.let { it > 0 }
+
         with(binding) {
-            authBtn.isVisible = sp?.getBoolean("connected", false) ?: false
+            authBtn.isVisible =  isConnected ?: false
 
             binding.familyAccessBtn.setOnClickListener{
-                if(sp?.getInt("familyId", -1)?.let { it > 0 } == true) {
-                    findNavController().navigate(navR.id.fragment_family_access)
-                } else {
+                if(isLoggedIn == false) {
                     Toast.makeText(context, "Сначала зарегестрируйтесь!", Toast.LENGTH_LONG).show()
+                    return@setOnClickListener
                 }
+
+                if(isConnected == false) {
+                    Toast.makeText(context, "Вы в оффлайн режиме", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+                findNavController().navigate(navR.id.fragment_family_access)
             }
 
             aboutAppBtn.setOnClickListener{ findNavController().navigate(navR.id.fragment_about_app) }
 
-            if(sp?.getBoolean("connected", false) == false) return
+            if(isConnected == false) return
 
-            if(sp?.getInt("familyId", -1)?.let { it > 0 } == true) {
+            if(isLoggedIn == true) {
                 authBtn.text = context?.getString(R.string.screen_settings_exit)
 
                 authBtn.setOnClickListener{
@@ -46,6 +54,11 @@ class SettingsFragment: BaseFragment<FragmentSettingsBinding>(FragmentSettingsBi
             } else {
                 authBtn.text = context?.getString(R.string.screen_settings_auth)
                 authBtn.setOnClickListener{ findNavController().navigate(navR.id.nav_auth) }
+            }
+
+            themeSwitch.setOnClickListener {
+                if(themeSwitch.isChecked){
+                }
             }
         }
     }

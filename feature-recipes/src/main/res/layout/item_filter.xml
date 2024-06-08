@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchParentWrapContent"
+    app:cardCornerRadius="15dp"
+    app:cardBackgroundColor="?attr/card_secondary">
+
+
+    <TextView
+        android:id="@+id/filter_name"
+        style="@style/Text.H2.ScreenTitle"
+        android:layout_height="match_parent"
+        android:textSize="15sp"
+        android:text="Франция"
+        android:gravity="center"
+        android:foregroundGravity="center"
+        android:padding="8dp"/>
+
+
+</androidx.cardview.widget.CardView>

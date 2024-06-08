@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/MatchParent"
+    style="@style/MatchParentWrapContent"
     android:background="@drawable/background_recipe_card">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -9,11 +9,11 @@
 
         <ImageView
             android:id="@+id/recipe_image"
-            style="@style/MatchParentWrapContent"
+            style="@style/MatchParent"
+            android:layout_height="200dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/recipe_name" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/recipe_name"
@@ -26,7 +26,7 @@
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <LinearLayout
-            android:id="@+id/recipe_calories"
+            android:id="@+id/calories"
             style="@style/MatchParentWrapContent"
             android:orientation="horizontal"
             android:layout_marginHorizontal="12dp"
@@ -34,36 +34,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recipe_name"
-            app:layout_constraintBottom_toTopOf="@id/recipe_time">
+            app:layout_constraintBottom_toTopOf="@id/time">
 
             <ImageView
                 style="@style/WrapContent"
                 android:src="@drawable/ic_fire"/>
 
             <TextView
+                android:id="@+id/recipe_calories"
                 style="@style/Text.H6.Regular"
                 android:layout_marginLeft="8dp"
-
                 android:text="184 ккал"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/recipe_time"
+            android:id="@+id/time"
             style="@style/MatchParentWrapContent"
             android:orientation="horizontal"
             android:layout_marginHorizontal="12dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recipe_calories"
-            app:layout_constraintBottom_toTopOf="@id/recipe_category">
+            app:layout_constraintTop_toBottomOf="@id/calories"
+            app:layout_constraintBottom_toTopOf="@id/category">
 
             <ImageView
                 style="@style/WrapContent"
                 android:src="@drawable/ic_clock"/>
 
             <TextView
+                android:id="@+id/recipe_time"
                 style="@style/Text.H6.Regular"
                 android:layout_marginLeft="8dp"
                 android:text="50 минут" />
@@ -71,20 +72,21 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/recipe_category"
+            android:id="@+id/category"
             style="@style/MatchParentWrapContent"
             android:orientation="horizontal"
             android:layout_marginHorizontal="12dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recipe_time">
+            app:layout_constraintTop_toBottomOf="@id/time">
 
             <ImageView
                 style="@style/WrapContent"
                 android:src="@drawable/ic_cap"/>
 
             <TextView
+                android:id="@+id/recipe_category"
                 style="@style/Text.H6.Regular"
                 android:layout_marginLeft="8dp"
                 android:text="Легко" />

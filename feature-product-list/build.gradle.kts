@@ -77,6 +77,8 @@ dependencies {
     implementation(Libs.AndroidX.navigationUiKtx)
     implementation(Libs.AndroidX.navigationFragmentKtx)
 
+    implementation(Libs.UI.swipeRefreshLayout)
+
     testImplementation(Libs.Test.mockito)
     testImplementation(Libs.Test.junit)
 }

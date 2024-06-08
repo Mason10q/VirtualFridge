@@ -4,9 +4,12 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.content.ContextCompat.startActivity
 import androidx.paging.Pager
+import androidx.paging.rxjava3.flowable
+import androidx.paging.rxjava3.observable
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
+import kotlinx.coroutines.flow.collectLatest
 import ru.virtual.feature_product_list.data.GroceryListRepository
 import ru.virtual.feature_product_list.data.paging.GroceryListPagingSource
 import ru.virtual.feature_product_list.domain.entities.GroceryList
@@ -38,9 +41,9 @@ class GroceryListUseCaseImpl @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
 
 
-    override fun getGroceryLists() = Pager(GroceryListRepository.pagerConfig, initialKey = 1,
+    override fun getGroceryLists() = Pager(GroceryListRepository.pagerConfig, initialKey = null,
         pagingSourceFactory = { GroceryListPagingSource(repository) }
-    ).flow
+    ).observable
 
     override fun addGroceryList(name: String): Completable =
         repository.addGroceryList(name)

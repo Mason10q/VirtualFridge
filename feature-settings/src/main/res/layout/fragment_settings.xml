@@ -52,7 +52,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/family_access_btn"
-        app:layout_constraintBottom_toTopOf="@id/auth_btn">
+        app:layout_constraintBottom_toTopOf="@id/switcher">
 
         <TextView
             android:id="@+id/about_app"
@@ -76,12 +76,45 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/switcher"
+        style="@style/MatchParentWrapContent"
+        android:paddingHorizontal="16dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/about_app_btn"
+        app:layout_constraintBottom_toTopOf="@id/auth_btn">
+
+        <TextView
+            android:id="@+id/dark_theme"
+            style="@style/Text.H4.Regular"
+            android:layout_width="0dp"
+            android:text="@string/screen_settings_family_access"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/theme_switch"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/theme_switch"
+            style="@style/WrapContent"
+            android:src="@drawable/ic_check_right"
+            android:background="@null"
+            app:layout_constraintStart_toEndOf="@id/dark_theme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <Button
         android:id="@+id/auth_btn"
         style="@style/Button.Active"
         android:layout_marginTop="36dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/about_app_btn"/>
+        app:layout_constraintTop_toBottomOf="@id/switcher"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

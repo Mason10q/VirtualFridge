@@ -2,6 +2,7 @@ package ru.virtual.feature_product_list.data.paging
 
 import androidx.paging.PagingState
 import androidx.paging.rxjava3.RxPagingSource
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import ru.virtual.feature_product_list.data.GroceryListRepository
@@ -14,6 +15,7 @@ class GroceryListPagingSource(
     override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, GroceryList>> =
         repository.getGroceryLists(pageNum = params.key ?: 1)
             .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .map { toLoadResult(it, params.key ?: 1) }
             .onErrorReturn { LoadResult.Error(it) }
 

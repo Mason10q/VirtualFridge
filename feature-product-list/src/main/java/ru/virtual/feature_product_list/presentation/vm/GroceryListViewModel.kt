@@ -1,12 +1,13 @@
 package ru.virtual.feature_product_list.presentation.vm
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import kotlinx.coroutines.flow.onStart
+import androidx.paging.PagingSource
+import androidx.paging.rxjava3.cachedIn
 import ru.virtual.core_android.RxStateViewModel
 import ru.virtual.core_android.states.Effect
 import ru.virtual.core_android.states.State
@@ -20,13 +21,15 @@ class GroceryListViewModel @Inject constructor(private val groceryListUseCase: G
     private val _groceryList = MutableLiveData<GroceryList>()
     val groceryList: LiveData<GroceryList> = _groceryList
 
-    suspend fun getGroceryLists() =
+    fun getGroceryLists() =
         groceryListUseCase.getGroceryLists()
-            .cachedIn(viewModelScope)
-            .onStart { _state.postValue(GroceryListState.Loading) }
-            .collect { groceryLists ->
-                _state.postValue(GroceryListState.Ready(groceryLists))
-            }
+            .doOnSubscribe { _state.postValue(GroceryListState.Loading) }
+            .onErrorComplete()
+            .subscribe({
+                _state.postValue(GroceryListState.Ready(it))
+            }, {
+                _effect.postValue(GroceryListEffect.Error)
+            })
 
 
     fun addGroceryList(name: String) = invokeDisposable {

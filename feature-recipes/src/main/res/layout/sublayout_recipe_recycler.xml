@@ -15,10 +15,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
+    <Button
         android:id="@+id/all_btn"
         style="@style/Text.H5.Regular"
         android:text="@string/header_all"
+        android:background="@null"
         android:layout_width="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

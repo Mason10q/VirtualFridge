@@ -8,11 +8,11 @@
         style="@style/EditText"
         android:layout_marginHorizontal="?attr/primary_margin_horizontal"
         android:layout_marginTop="26dp"
+        android:layout_width="0dp"
         android:queryHint="@string/screen_recipes_search_hint"
         android:imeOptions="actionDone"
         android:inputType="text"
         app:iconifiedByDefault="false"
-        app:layout_constraintBottom_toTopOf="@id/popular_recycler"
         app:layout_constraintEnd_toStartOf="@id/filter_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,36 +20,42 @@
     <ImageButton
         android:id="@+id/filter_btn"
         style="@style/Button.Active"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="26dp"
+        android:padding="12dp"
         android:src="@drawable/ic_filters"
-        app:layout_constraintBottom_toTopOf="@id/popular_recycler"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/search_bar"
-        app:layout_constraintTop_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/search_bar" />
 
 
-    <include
-        android:id="@+id/popular_recycler"
-        layout="@layout/sublayout_recipe_recycler"
-        app:layout_constraintBottom_toTopOf="@id/ingredient_recycler"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_bar"/>
-
-    <include
-        android:id="@+id/ingredient_recycler"
-        layout="@layout/sublayout_recipe_recycler"
-        app:layout_constraintBottom_toTopOf="@id/recipe_recycler"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/popular_recycler"/>
-
-    <include
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recipe_recycler"
-        layout="@layout/sublayout_recipe_recycler"
+        style="@style/MatchParent0dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    <include
+        android:id="@+id/loading"
+        layout="@layout/sublayout_loading"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ingredient_recycler" />
+        app:layout_constraintTop_toBottomOf="@id/search_bar" />
+
+    <include
+        android:id="@+id/empty_layout"
+        layout="@layout/empty_layout"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_bar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

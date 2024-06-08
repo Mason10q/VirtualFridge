@@ -1,5 +1,6 @@
 import buildsrc.Versions
 import buildsrc.Libs
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.androidLibrary)
@@ -16,6 +17,12 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        val properties = Properties()
+        properties.load(project.rootProject.file("local.properties").inputStream())
+
+        buildConfigField("String", "API_KEY", "\"${properties.getProperty("API_KEY")}\"")
+        buildConfigField("String", "ENDPOINT_URL", "\"${properties.getProperty("ENDPOINT_URL")}\"")
     }
 
     buildTypes {
@@ -37,6 +44,9 @@ android {
     viewBinding {
         enable = true
     }
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
@@ -44,6 +54,7 @@ dependencies {
     implementation(project(":core-android"))
     implementation(project(":core-res"))
     implementation(project(":core-navigation"))
+    implementation(project(":core-network"))
 
     implementation(Libs.AndroidX.core)
     implementation(Libs.AndroidX.appCompat)
@@ -53,9 +64,24 @@ dependencies {
     implementation(Libs.RxJava.rxJava)
     implementation(Libs.RxJava.rxJavaAndroid)
 
+    implementation(Libs.Network.retrofit)
+    implementation(Libs.Network.retrofitRxJava3)
+    implementation(Libs.Network.retrofitGson)
+    implementation(Libs.Network.ohttp)
+    implementation(Libs.Network.okhttpLogInter)
+    implementation(platform(Libs.Network.okhttpBom))
+    implementation(Libs.Network.gson)
+
     implementation(Libs.DI.dagger)
     kapt(Libs.DI.daggerCompiler)
 
     implementation(Libs.AndroidX.navigationUiKtx)
     implementation(Libs.AndroidX.navigationFragmentKtx)
+
+    implementation(Libs.AndroidX.paging)
+    implementation(Libs.AndroidX.pagingRxJava3)
+
+    implementation(Libs.UI.delegateAdapter)
+
+    implementation(Libs.UI.picasso)
 }

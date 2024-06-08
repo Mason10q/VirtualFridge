@@ -9,7 +9,9 @@ import ru.virtual.core_navigation.R as navR
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.virtual.core_android.states.StateMachine
 import ru.virtual.core_android.ui.FooterLoadStateAdapter
@@ -55,14 +57,12 @@ class GroceryListFragment: StateFragment<FragmentGroceryListBinding, GroceryList
             }
 
             addBtn.setOnClickListener { findNavController().navigate(navR.id.fragment_add_grocery_list) }
+
+            refresher.setOnRefreshListener { refreshData() }
         }
     }
 
-    override fun refreshData() {
-        lifecycleScope.launch {
-            viewModel.getGroceryLists()
-        }
-    }
+    override fun refreshData() { viewModel.getGroceryLists() }
 
     private fun setUpAdapter() {
         with(adapter) {
@@ -91,9 +91,7 @@ class GroceryListFragment: StateFragment<FragmentGroceryListBinding, GroceryList
     }
 
     override fun getStartData() {
-        lifecycleScope.launch {
-            viewModel.getGroceryLists()
-        }
+        viewModel.getGroceryLists()
     }
 
     private fun setUpEmptyLayout() {
@@ -114,6 +112,7 @@ class GroceryListFragment: StateFragment<FragmentGroceryListBinding, GroceryList
     ) {
         lifecycleScope.launch {
             adapter.submitData(it.groceryLists)
+            binding.refresher.isRefreshing = false
         }
     }
 

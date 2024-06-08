@@ -4,6 +4,7 @@ import buildsrc.Versions
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
 }
 
 android {
@@ -52,6 +53,7 @@ dependencies {
     implementation(project(":feature-auth"))
     implementation(project(":feature-settings"))
     implementation(project(":feature-fridge"))
+    implementation(project(":feature-recipes"))
 
     implementation(Libs.AndroidX.core)
     implementation(Libs.AndroidX.appCompat)
@@ -60,4 +62,9 @@ dependencies {
 
     implementation(Libs.AndroidX.navigationUiKtx)
     implementation(Libs.AndroidX.navigationFragmentKtx)
+
+    implementation(Libs.DI.dagger)
+    kapt(Libs.DI.daggerCompiler)
+    implementation(Libs.DI.daggerAndroid)
+    kapt(Libs.DI.daggerAndroidProcessor)
 }

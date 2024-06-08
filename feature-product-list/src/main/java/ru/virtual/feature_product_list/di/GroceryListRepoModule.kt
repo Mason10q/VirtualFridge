@@ -25,7 +25,7 @@ import ru.virtual.feature_product_list.domain.entities.Grocery
 import ru.virtual.feature_product_list.domain.entities.GroceryList
 
 @Module
-class GroceryListRepoModule(private val context: Context) {
+class GroceryListRepoModule(context: Context) {
 
     private val sp: SharedPreferences = context.getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
 

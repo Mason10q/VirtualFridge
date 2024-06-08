@@ -14,6 +14,7 @@ import ru.virtual.core_network.AuthApi
 import ru.virtual.core_network.BuildConfig
 import ru.virtual.core_network.FridgeApi
 import ru.virtual.core_network.GroceryListApi
+import ru.virtual.core_network.RecipeApi
 import ru.virtual.core_network.retrofit.buildApi
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -60,4 +61,8 @@ class NetworkModule {
     @Singleton
     @Provides
     fun provideAuthApi(builder: Builder)= builder.buildApi<AuthApi>()
+
+    @Singleton
+    @Provides
+    fun provideRecipeApi(builder: Builder) = builder.buildApi<RecipeApi>()
 }

@@ -59,4 +59,6 @@ dependencies {
     
     implementation(Libs.AndroidX.navigationUiKtx)
     implementation(Libs.AndroidX.navigationFragmentKtx)
+
+    implementation(Libs.UI.animatedThemeManager)
 }

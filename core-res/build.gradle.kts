@@ -40,4 +40,5 @@ dependencies {
     implementation(Libs.AndroidX.core)
     implementation(Libs.AndroidX.appCompat)
     implementation(Libs.Google.material)
+    implementation(Libs.UI.animatedThemeManager)
 }
